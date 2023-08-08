@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Foot : MonoBehaviour
 {
+    bool isLifted;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,14 @@ public class Foot : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Set_isLifted(bool newState)
+    {
+        isLifted = newState;
+    }
+    public bool Get_isLifted()
+    {
+        return isLifted;
     }
 }
