@@ -24,9 +24,4 @@ public class Judoka : MonoBehaviour
         
     }
 
-    public void SetBothFeetDown()
-    {
-        rightFoot.Set_isLifted(false);
-        leftFoot.Set_isLifted(false);
-    }
 }
