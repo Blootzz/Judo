@@ -8,7 +8,7 @@ public class Foot : MonoBehaviour
     IpponCircle parentIpponCircle;
 
     bool isLifted;
-    [SerializeField] float maxSpeed = 1;
+    [SerializeField] float maxSpeed = 10;
     [SerializeField] float MINSCALE = 0.1f;
     [SerializeField] float MAXSCALE = 0.9f;
     public float weightFraction = 0.5f;
@@ -30,17 +30,15 @@ public class Foot : MonoBehaviour
 
     void FollowCursor()
     {
-        //Vector3 newPosition = Vector3.MoveTowards(transform.position, cursor.transform.position, maxSpeed);
         float newDistanceToOtherFoot = Vector3.Distance(cursor.transform.position, Get_otherFoot().transform.position);
         if (newDistanceToOtherFoot > parentIpponCircle.Get_Diameter())
         {
-            transform.position = Vector3.MoveTowards(transform.position, LimitFootByTrig(), maxSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, LimitFootByTrig(), maxSpeed * Time.deltaTime);
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, cursor.transform.position, maxSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, cursor.transform.position, maxSpeed * Time.deltaTime);
         }
-        //AdjustFootBackToIpponCircle();
     }
 
     Vector3 LimitFootByTrig()
@@ -55,17 +53,17 @@ public class Foot : MonoBehaviour
         return newPosition;
     }
 
-    void AdjustFootBackToIpponCircle()
-    {
-        float distance = Vector3.Distance(transform.position, Get_otherFoot().transform.position);
-        if (distance > parentIpponCircle.GetComponent<CircleCollider2D>().radius * 2 * parentIpponCircle.transform.lossyScale.x)
-        {
-            // get difference vector from center of Ippon
-            // set second foot to 2* that difference
-            Vector3 ipponMinusPlantedFoot = parentIpponCircle.transform.position - Get_otherFoot().transform.position;
-            transform.position = Get_otherFoot().transform.position + 2 * ipponMinusPlantedFoot;
-        }
-    }
+    //void AdjustFootBackToIpponCircle()
+    //{
+    //    float distance = Vector3.Distance(transform.position, Get_otherFoot().transform.position);
+    //    if (distance > parentIpponCircle.GetComponent<CircleCollider2D>().radius * 2 * parentIpponCircle.transform.lossyScale.x)
+    //    {
+    //        // get difference vector from center of Ippon
+    //        // set second foot to 2* that difference
+    //        Vector3 ipponMinusPlantedFoot = parentIpponCircle.transform.position - Get_otherFoot().transform.position;
+    //        transform.position = Get_otherFoot().transform.position + 2 * ipponMinusPlantedFoot;
+    //    }
+    //}
 
     public void Set_isLifted(bool newState)
     {
@@ -78,7 +76,7 @@ public class Foot : MonoBehaviour
 
     public void Set_weightFraction(float newWeight)
     {
-        //weightFraction = Mathf.Clamp(newWeight, MINSCALE, MAXSCALE);
+        weightFraction = Mathf.Clamp(newWeight, MINSCALE, MAXSCALE);
         localScaleVector.x = weightFraction; localScaleVector.y = weightFraction; localScaleVector.z = weightFraction;
         transform.localScale = localScaleVector;
     }

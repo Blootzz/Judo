@@ -7,17 +7,21 @@ public class MassCenter : MonoBehaviour
     Judoka parentJudoka;
     float distanceToLeftFoot;
     float distanceToRightFoot;
+    IpponCircle myIpponCirlce;
 
     // Start is called before the first frame update
     void Start()
     {
         parentJudoka = GetComponentInParent<Judoka>();
+        myIpponCirlce = parentJudoka.GetComponentInChildren<IpponCircle>();
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateFootWeightDistribution();
+        if (Vector2.Distance(transform.position, myIpponCirlce.transform.position) >= myIpponCirlce.Get_Diameter() / 2)
+            print("Ippon!");
     }
 
     void UpdateFootWeightDistribution()

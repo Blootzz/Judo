@@ -272,7 +272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7983932217182887562, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: maxSpeed
-      value: 0.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8894992127520176924, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: m_Color.b
@@ -946,7 +946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7983932217182887562, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: maxSpeed
-      value: 0.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8894992127520176924, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: m_Color.b
