@@ -6,9 +6,10 @@ public class Judoka : MonoBehaviour
 {
     public Foot leftFoot;
     public Foot rightFoot;
+    public bool isEngagedWithOpponent = false;
 
-    // Start is called before the first frame update
-    void Start()
+    // Needs to be called before Start() so that FeetCenterline.Start can use these references
+    void Awake()
     {
         Foot[] footArray = GetComponentsInChildren<Foot>();
         foreach (Foot foot in footArray)
@@ -16,12 +17,6 @@ public class Judoka : MonoBehaviour
                 leftFoot = foot;
             else
                 rightFoot = foot;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 }
