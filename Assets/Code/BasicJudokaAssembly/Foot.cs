@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Foot : MonoBehaviour
 {
+    [SerializeField] Sprite originalFootSprite;
+    [SerializeField] Sprite reapingFootSprite;
     Cursor cursor;
     IpponCircle parentIpponCircle;
 
     bool isLifted;
+    bool isReaping = false; // used when extra button is being held down
     [SerializeField] float maxSpeed = 10;
     [SerializeField] float MINSCALE = 0.1f;
     [SerializeField] float MAXSCALE = 0.9f;
@@ -25,7 +28,18 @@ public class Foot : MonoBehaviour
     void Update()
     {
         if (isLifted)
+        {
             FollowCursor();
+
+            if (Input.GetKey(KeyCode.LeftShift))
+                Set_isReaping(true);
+            else
+                Set_isReaping(false);
+        }
+        else
+        {
+            Set_isReaping(false);
+        }
     }
 
     void FollowCursor()
@@ -64,6 +78,35 @@ public class Foot : MonoBehaviour
     //        transform.position = Get_otherFoot().transform.position + 2 * ipponMinusPlantedFoot;
     //    }
     //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Foot>())
+        {
+            // Foot interactions
+            // normal block, clean reap, failed reap
+            // normal block - depending on speed and weights, create a curved wall around loser of interation
+            // clean reap - depending on weight, speed, and off-balanceness of victim, victim's foot is stunned for time
+            // failed reap - attacker's foot is stunned for time
+        }
+    }
+
+    void Set_isReaping(bool toReapOrNotToReap)
+    {
+        // don't do anything if update doesn't change anything
+        if (isReaping == toReapOrNotToReap)
+            return;
+
+        isReaping = toReapOrNotToReap;
+        if (isReaping)
+        {
+            GetComponent<SpriteRenderer>().sprite = reapingFootSprite;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = originalFootSprite;
+        }
+    }
 
     public void Set_isLifted(bool newState)
     {

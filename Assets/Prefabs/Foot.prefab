@@ -99,7 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5073a814efcc54592d897cac4ec6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalFootSprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  reapingFootSprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   maxSpeed: 1
+  MINSCALE: 0.1
+  MAXSCALE: 0.9
   weightFraction: 0.5
 --- !u!50 &-7118247845492064399
 Rigidbody2D:

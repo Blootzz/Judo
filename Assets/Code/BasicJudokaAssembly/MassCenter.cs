@@ -4,19 +4,6 @@ using UnityEngine;
 
 public class MassCenter : MonoBehaviour
 {
-    [Header("Position Influence Multipliers")]
-    // these variables should not be changed by code. They should be used to multiply arguments of AddInfluenceToPos(Vector2 influence)
-    public float WASD_STRENGTH = 1;
-    public float CENTERLINE_PULL_STRENGTH = 1;
-    public float CENTERLINE_PUSH_STRENGTH = 1;
-    public float OPPONENT_STRENGTH = 1;
-    public float REAPING_FOOT_STRENGTH = 1;
-
-    [Header("Push/Pull Boundary")]
-    [SerializeField] float balanceBoundary_insideStance = 0.5f;
-    [SerializeField] float balanceBoundary_outsideStance = 0.5f;
-
-    [Header("")]
     Judoka parentJudoka;
     IpponCircle myIpponCirlce;
     float distanceToLeftFoot;
@@ -126,29 +113,29 @@ public class MassCenter : MonoBehaviour
 
     void PushOrPullToCenterline(float distanceToCenterline, Vector3 targetPosition)
     {
-        if (distanceToCenterline <= balanceBoundary_insideStance)
+        if (distanceToCenterline <= parentJudoka.balanceBoundary_insideStance)
         {
             //print("CENTERLINE <== pull");
-            AddInfluenceToPosition(CENTERLINE_PULL_STRENGTH * (targetPosition - transform.position));
+            AddInfluenceToPosition(parentJudoka.CENTERLINE_PULL_STRENGTH * (targetPosition - transform.position));
         }
         else
         {
             //print("CENTERLINE push ==>");
-            AddInfluenceToPosition(CENTERLINE_PUSH_STRENGTH * (transform.position - targetPosition));
+            AddInfluenceToPosition(parentJudoka.CENTERLINE_PUSH_STRENGTH * (transform.position - targetPosition));
         }
     }
 
     void PushOrPullToCenterlineFoot(Vector2 closestFootPos)
     {
-        if (Vector2.Distance(transform.position, closestFootPos) <= balanceBoundary_outsideStance)
+        if (Vector2.Distance(transform.position, closestFootPos) <= parentJudoka.balanceBoundary_outsideStance)
         {
             //print("FOOT <== pull");
-            AddInfluenceToPosition(CENTERLINE_PULL_STRENGTH * closestFootPos);
+            AddInfluenceToPosition(parentJudoka.CENTERLINE_PULL_STRENGTH * closestFootPos);
         }
         else
         {
             //print("FOOT push ==>");
-            AddInfluenceToPosition(CENTERLINE_PUSH_STRENGTH * -1 * closestFootPos);
+            AddInfluenceToPosition(parentJudoka.CENTERLINE_PUSH_STRENGTH * -1 * closestFootPos);
         }
     }
 
