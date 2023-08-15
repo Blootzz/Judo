@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class MassCenter : MonoBehaviour
 {
+    [Header("Position Influence Multipliers")]
+    // these variables should not be changed by code. They should be used to multiply arguments of AddInfluenceToPos(Vector2 influence)
+    public float WASD_STRENGTH = 1;
+    public float CENTERLINE_PULL_STRENGTH = 1;
+    public float CENTERLINE_PUSH_STRENGTH = 1;
+    public float OPPONENT_STRENGTH = 1;
+    public float REAPING_FOOT_STRENGTH = 1;
+
+    [Header("Push/Pull Boundary")]
     [SerializeField] float balanceBoundary_insideStance = 0.5f;
     [SerializeField] float balanceBoundary_outsideStance = 0.5f;
 
+    [Header("")]
     Judoka parentJudoka;
+    IpponCircle myIpponCirlce;
     float distanceToLeftFoot;
     float distanceToRightFoot;
-    IpponCircle myIpponCirlce;
+    Vector2 posInfluenceSumPerFrame = new Vector2(0,0);
+    public float TOTAL_SPEED_MULTIPLIER = 1;
 
     // variables for detecting proximity to FeetCenterline
     Vector2 centerLineSlope;
     Vector2 raycastDirection;
     RaycastHit2D[] hitObjects;
-    public LayerMask layerOfCenterline; // Player 1, Player 2, etc... This gives RaycastAll less stuff to look through
+    LayerMask layerOfCenterline; // Player 1, Player 2, etc... This gives RaycastAll less stuff to look through
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +43,29 @@ public class MassCenter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateFootWeightDistribution();
-        EvaluateMassProximity(); // depending on proximity to center line, push or pull towards center point or closest foot
-        if (Vector2.Distance(transform.position, myIpponCirlce.transform.position) >= myIpponCirlce.Get_Diameter() / 2)
-            print("Ippon!");
+        UpdateFootDistances(); // measures distances from feet to here
+        UpdateFootWeightDistribution(); // depending on distance from center of ippon, change feet weight
+        EvaluateMassProximityInfluence(); // depending on proximity to center line, push or pull towards center point or closest foot
+
+        ExecuteAllInfluences();
+        posInfluenceSumPerFrame = Vector2.zero; // reset for next frame
+        EvaluateIppon(); // measures distance from here to center of ippon circle
     }
 
-    void EvaluateMassProximity()
+    void UpdateFootDistances()
+    {
+        distanceToLeftFoot = Vector3.Distance(transform.position, parentJudoka.leftFoot.transform.position);
+        distanceToRightFoot = Vector3.Distance(transform.position, parentJudoka.rightFoot.transform.position);
+    }
+
+    void UpdateFootWeightDistribution()
+    {
+        //float leftFootDistanceFraction = distanceToLeftFoot / (distanceToLeftFoot + distanceToRightFoot);
+        // less distance = more weight
+        parentJudoka.leftFoot.Set_weightFraction(1 - distanceToLeftFoot / (distanceToLeftFoot + distanceToRightFoot));
+        parentJudoka.rightFoot.Set_weightFraction(distanceToLeftFoot / (distanceToLeftFoot + distanceToRightFoot));
+    }
+    void EvaluateMassProximityInfluence()
     {
         // if raycast hits FeetCenterline, get distance
         // origin = here
@@ -58,7 +86,7 @@ public class MassCenter : MonoBehaviour
         {
             if (target.collider.GetComponent<EdgeCollider2D>())
             {
-                PushOrPullToCenterline(target.distance);
+                PushOrPullToCenterline(target.distance, target.point);
                 return;
             }
         }
@@ -72,49 +100,61 @@ public class MassCenter : MonoBehaviour
         {
             if (target.collider.GetComponent<EdgeCollider2D>())
             {
-                PushOrPullToCenterline(target.distance);
+                PushOrPullToCenterline(target.distance, target.point);
                 return;
             }
         }
 
         // return statement has not been hit -> just compare distances
-        float distanceToLeftFoot = Vector2.Distance(transform.position, parentJudoka.leftFoot.transform.position);
-        float distanceToRightFoot = Vector2.Distance(transform.position, parentJudoka.rightFoot.transform.position);
+        //float distanceToLeftFoot = Vector2.Distance(transform.position, parentJudoka.leftFoot.transform.position);
+        //float distanceToRightFoot = Vector2.Distance(transform.position, parentJudoka.rightFoot.transform.position);
         // pass in closest foot
-        PushOrPullToFoot((distanceToLeftFoot <= distanceToRightFoot) ? parentJudoka.leftFoot.transform.position : parentJudoka.rightFoot.transform.position);
+        PushOrPullToCenterlineFoot((distanceToLeftFoot <= distanceToRightFoot) ? parentJudoka.leftFoot.transform.position : parentJudoka.rightFoot.transform.position);
     }
 
-    void PushOrPullToCenterline(float distanceToCenterline)
+    void ExecuteAllInfluences()
+    {
+        //print(posInfluenceSumPerFrame);
+        transform.position += Vector3.MoveTowards(Vector2.zero, posInfluenceSumPerFrame, TOTAL_SPEED_MULTIPLIER * Time.deltaTime);
+    }
+
+    void EvaluateIppon()
+    { 
+        if (Vector2.Distance(transform.position, myIpponCirlce.transform.position) >= myIpponCirlce.Get_Diameter() / 2)
+            print("Ippon!");
+    }
+
+    void PushOrPullToCenterline(float distanceToCenterline, Vector3 targetPosition)
     {
         if (distanceToCenterline <= balanceBoundary_insideStance)
         {
-            print("CENTERLINE PROXIMITY -> pull in to center");
+            //print("CENTERLINE <== pull");
+            AddInfluenceToPosition(CENTERLINE_PULL_STRENGTH * (targetPosition - transform.position));
         }
         else
         {
-            print("CENTERLINE PROXIMITY -> push out from center");
+            //print("CENTERLINE push ==>");
+            AddInfluenceToPosition(CENTERLINE_PUSH_STRENGTH * (transform.position - targetPosition));
         }
     }
 
-    void PushOrPullToFoot(Vector2 closestFootPos)
+    void PushOrPullToCenterlineFoot(Vector2 closestFootPos)
     {
         if (Vector2.Distance(transform.position, closestFootPos) <= balanceBoundary_outsideStance)
         {
-            print("FOOT PROXIMITY -> pull to closest foot or center");
+            //print("FOOT <== pull");
+            AddInfluenceToPosition(CENTERLINE_PULL_STRENGTH * closestFootPos);
         }
         else
         {
-            print("FOOT PROXIMITY -> push out from center");
+            //print("FOOT push ==>");
+            AddInfluenceToPosition(CENTERLINE_PUSH_STRENGTH * -1 * closestFootPos);
         }
     }
 
-    void UpdateFootWeightDistribution()
+    public void AddInfluenceToPosition(Vector2 influencePerFrame) // call this every frame wherever influence originates from
     {
-        distanceToLeftFoot = Vector3.Distance(transform.position, parentJudoka.leftFoot.transform.position);
-        distanceToRightFoot = Vector3.Distance(transform.position, parentJudoka.rightFoot.transform.position);
-        //float leftFootDistanceFraction = distanceToLeftFoot / (distanceToLeftFoot + distanceToRightFoot);
-        // less distance = more weight
-        parentJudoka.leftFoot.Set_weightFraction(1 - distanceToLeftFoot / (distanceToLeftFoot + distanceToRightFoot));
-        parentJudoka.rightFoot.Set_weightFraction(distanceToLeftFoot / (distanceToLeftFoot + distanceToRightFoot));
+        //print("Adding: " + influencePerFrame);
+        posInfluenceSumPerFrame += influencePerFrame;
     }
 }

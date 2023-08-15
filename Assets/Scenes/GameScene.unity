@@ -232,11 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.55
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.48
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: m_LocalPosition.z
@@ -801,7 +801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818922228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.91, y: 0.76, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -820,6 +820,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7d289856c04a94d8685722b15f7d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WASD_STRENGTH: 1
+  CENTERLINE_PULL_STRENGTH: 1
+  CENTERLINE_PUSH_STRENGTH: 1
+  OPPONENT_STRENGTH: 1
+  REAPING_FOOT_STRENGTH: 1
+  balanceBoundary_insideStance: 0.5
+  balanceBoundary_outsideStance: 0.5
+  TOTAL_SPEED_MULTIPLIER: 1
 --- !u!212 &1818922231
 SpriteRenderer:
   m_ObjectHideFlags: 0
