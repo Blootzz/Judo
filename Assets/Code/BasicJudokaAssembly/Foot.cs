@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Foot : MonoBehaviour
 {
-<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
     [SerializeField] Sprite originalFootSprite;
@@ -12,17 +11,12 @@ public class Foot : MonoBehaviour
     [SerializeField] GameObject blockingCurve; // arc opening upwards. Rotate on Z-axis (positive = CW)
     Rigidbody2D rb;
 >>>>>>> Stashed changes
-=======
-    [SerializeField] Sprite originalFootSprite;
-    [SerializeField] Sprite reapingFootSprite;
->>>>>>> Mass-Center
     Cursor cursor;
     IpponCircle parentIpponCircle;
     FollowTarget follow;
 
 <<<<<<< Updated upstream
     bool isLifted;
-<<<<<<< HEAD
     [SerializeField] float maxSpeed = 1;
 =======
     [SerializeField] bool debug_mode = false;
@@ -30,10 +24,6 @@ public class Foot : MonoBehaviour
     [SerializeField] bool isReaping = false; // used when extra button is being held down
     [SerializeField] float maxSpeed = 10;
 >>>>>>> Stashed changes
-=======
-    bool isReaping = false; // used when extra button is being held down
-    [SerializeField] float maxSpeed = 10;
->>>>>>> Mass-Center
     [SerializeField] float MINSCALE = 0.1f;
     [SerializeField] float MAXSCALE = 0.9f;
     [SerializeField] float BLOCK_LIFETIME = 1f;
@@ -69,26 +59,15 @@ public class Foot : MonoBehaviour
             return;
 
         if (isLifted)
-        {
             FollowCursor();
-
-            if (Input.GetKey(KeyCode.LeftShift))
-                Set_isReaping(true);
-            else
-                Set_isReaping(false);
-        }
-        else
-        {
-            Set_isReaping(false);
-        }
     }
 
     void FollowCursor()
     {
+        //Vector3 newPosition = Vector3.MoveTowards(transform.position, cursor.transform.position, maxSpeed);
         float newDistanceToOtherFoot = Vector3.Distance(cursor.transform.position, Get_otherFoot().transform.position);
         if (newDistanceToOtherFoot > parentIpponCircle.Get_Diameter())
         {
-<<<<<<< HEAD
 <<<<<<< Updated upstream
             transform.position = Vector3.MoveTowards(transform.position, LimitFootByTrig(), maxSpeed);
         }
@@ -102,14 +81,8 @@ public class Foot : MonoBehaviour
         {
             rb.MovePosition(Vector3.MoveTowards(transform.position, cursor.transform.position, maxSpeed * Time.deltaTime));
 >>>>>>> Stashed changes
-=======
-            transform.position = Vector3.MoveTowards(transform.position, LimitFootByTrig(), maxSpeed * Time.deltaTime);
         }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, cursor.transform.position, maxSpeed * Time.deltaTime);
->>>>>>> Mass-Center
-        }
+        //AdjustFootBackToIpponCircle();
     }
 
     Vector3 LimitFootByTrig()
@@ -124,28 +97,12 @@ public class Foot : MonoBehaviour
         return newPosition;
     }
 
-<<<<<<< HEAD
 <<<<<<< Updated upstream
     void AdjustFootBackToIpponCircle()
-=======
-    //void AdjustFootBackToIpponCircle()
-    //{
-    //    float distance = Vector3.Distance(transform.position, Get_otherFoot().transform.position);
-    //    if (distance > parentIpponCircle.GetComponent<CircleCollider2D>().radius * 2 * parentIpponCircle.transform.lossyScale.x)
-    //    {
-    //        // get difference vector from center of Ippon
-    //        // set second foot to 2* that difference
-    //        Vector3 ipponMinusPlantedFoot = parentIpponCircle.transform.position - Get_otherFoot().transform.position;
-    //        transform.position = Get_otherFoot().transform.position + 2 * ipponMinusPlantedFoot;
-    //    }
-    //}
-
-    private void OnTriggerEnter2D(Collider2D collision)
->>>>>>> Mass-Center
     {
-        if (collision.gameObject.GetComponent<Foot>())
+        float distance = Vector3.Distance(transform.position, Get_otherFoot().transform.position);
+        if (distance > parentIpponCircle.GetComponent<CircleCollider2D>().radius * 2 * parentIpponCircle.transform.lossyScale.x)
         {
-<<<<<<< HEAD
             // get difference vector from center of Ippon
             // set second foot to 2* that difference
             Vector3 ipponMinusPlantedFoot = parentIpponCircle.transform.position - Get_otherFoot().transform.position;
@@ -259,13 +216,6 @@ public class Foot : MonoBehaviour
         else
         {
             GetComponent<FollowTarget>().StopFollowing();
-=======
-            // Foot interactions
-            // normal block, clean reap, failed reap
-            // normal block - depending on speed and weights, create a curved wall around loser of interation
-            // clean reap - depending on weight, speed, and off-balanceness of victim, victim's foot is stunned for time
-            // failed reap - attacker's foot is stunned for time
->>>>>>> Mass-Center
         }
     }
 
@@ -283,10 +233,7 @@ public class Foot : MonoBehaviour
         else
         {
             GetComponent<SpriteRenderer>().sprite = originalFootSprite;
-<<<<<<< HEAD
 >>>>>>> Stashed changes
-=======
->>>>>>> Mass-Center
         }
     }
 
@@ -301,7 +248,7 @@ public class Foot : MonoBehaviour
 
     public void Set_weightFraction(float newWeight)
     {
-        weightFraction = Mathf.Clamp(newWeight, MINSCALE, MAXSCALE);
+        //weightFraction = Mathf.Clamp(newWeight, MINSCALE, MAXSCALE);
         localScaleVector.x = weightFraction; localScaleVector.y = weightFraction; localScaleVector.z = weightFraction;
         transform.localScale = localScaleVector;
     }
