@@ -24,10 +24,11 @@ public class FeetCenterline : MonoBehaviour
     // Update position every frame
     void Update()
     {
+        print("LeftFoot: " + leftFoot.transform.position);
         // position 0 = left foot
-        colliderPointList[0] = leftFoot.transform.position;
+        colliderPointList[0] = leftFoot.transform.localPosition;
         // position 1 = right foot
-        colliderPointList[1] = rightFoot.transform.position;
+        colliderPointList[1] = rightFoot.transform.localPosition;
 
         edgeCollider.SetPoints(colliderPointList);
 
