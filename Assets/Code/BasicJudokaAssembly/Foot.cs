@@ -9,6 +9,7 @@ public class Foot : MonoBehaviour
     [SerializeField] GameObject blockingCurve; // arc opening upwards. Rotate on Z-axis (positive = CW)
     Rigidbody2D rb;
     Cursor cursor;
+    Judoka judoka;
     IpponCircle parentIpponCircle;
     FollowTarget follow;
 
@@ -27,6 +28,7 @@ public class Foot : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        judoka = GetComponentInParent<Judoka>();
         follow = GetComponent<FollowTarget>();
         
         if (debug_mode)
@@ -37,7 +39,7 @@ public class Foot : MonoBehaviour
         else
         {
             cursor = FindObjectOfType<Cursor>();
-            parentIpponCircle = GetComponentInParent<Judoka>().GetComponentInChildren<IpponCircle>();
+            parentIpponCircle = judoka.GetComponentInChildren<IpponCircle>();
         }
     }
 
@@ -150,6 +152,7 @@ public class Foot : MonoBehaviour
                 if (opponentFoot.isReaping) // other foot is reaping
                 {
                     print("Reap on reap");
+                    //nothing
                     goto FinishCollision;
                 }
             }
@@ -199,6 +202,7 @@ public class Foot : MonoBehaviour
         if (isReaping)
         {
             GetComponent<SpriteRenderer>().sprite = reapingFootSprite;
+            //judoka.GetComponentInChildren<MassCenter>().AddInfluenceToPosition(judoka.REAPING_FOOT_STRENGTH * )
         }
         else
         {
@@ -228,9 +232,9 @@ public class Foot : MonoBehaviour
 
     public Foot Get_otherFoot()
     {
-        if (GetComponentInParent<Judoka>().leftFoot == this)
-            return GetComponentInParent<Judoka>().rightFoot;
+        if (judoka.leftFoot == this)
+            return judoka.rightFoot;
         else
-            return GetComponentInParent<Judoka>().leftFoot;
+            return judoka.leftFoot;
     }
 }
