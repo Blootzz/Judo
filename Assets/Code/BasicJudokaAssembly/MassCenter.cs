@@ -8,7 +8,7 @@ public class MassCenter : MonoBehaviour
     IpponCircle myIpponCirlce;
     float distanceToLeftFoot;
     float distanceToRightFoot;
-    Vector2 posInfluenceSumPerFrame = new Vector2(0,0);
+    Vector2 posInfluenceSumOneFrame = new Vector2(0,0);
     public float TOTAL_SPEED_MULTIPLIER = 1;
 
     // variables for detecting proximity to FeetCenterline
@@ -35,7 +35,7 @@ public class MassCenter : MonoBehaviour
         EvaluateMassProximityInfluence(); // depending on proximity to center line, push or pull towards center point or closest foot
 
         ExecuteAllInfluences();
-        posInfluenceSumPerFrame = Vector2.zero; // reset for next frame
+        posInfluenceSumOneFrame = Vector2.zero; // reset for next frame
         EvaluateIppon(); // measures distance from here to center of ippon circle
     }
 
@@ -102,7 +102,7 @@ public class MassCenter : MonoBehaviour
     void ExecuteAllInfluences()
     {
         //print(posInfluenceSumPerFrame);
-        transform.position += Vector3.MoveTowards(Vector2.zero, posInfluenceSumPerFrame, TOTAL_SPEED_MULTIPLIER * Time.deltaTime);
+        transform.position += Vector3.MoveTowards(Vector2.zero, posInfluenceSumOneFrame, TOTAL_SPEED_MULTIPLIER * Time.deltaTime);
     }
 
     void EvaluateIppon()
@@ -130,18 +130,18 @@ public class MassCenter : MonoBehaviour
         if (Vector2.Distance(transform.position, closestFootPos) <= parentJudoka.balanceBoundary_outsideStance)
         {
             //print("FOOT <== pull");
-            AddInfluenceToPosition(parentJudoka.CENTERLINE_PULL_STRENGTH * closestFootPos);
+            AddInfluenceToPosition(parentJudoka.CENTERLINE_PULL_STRENGTH * (closestFootPos - new Vector2(transform.position.x, transform.position.y)));
         }
         else
         {
             //print("FOOT push ==>");
-            AddInfluenceToPosition(parentJudoka.CENTERLINE_PUSH_STRENGTH * -1 * closestFootPos);
+            AddInfluenceToPosition(parentJudoka.CENTERLINE_PUSH_STRENGTH * (new Vector2(transform.position.x, transform.position.y) - closestFootPos));
         }
     }
 
-    public void AddInfluenceToPosition(Vector2 influencePerFrame) // call this every frame wherever influence originates from
+    public void AddInfluenceToPosition(Vector2 influenceOneFrame) // call this every frame wherever influence originates from
     {
         //print("Adding: " + influencePerFrame);
-        posInfluenceSumPerFrame += influencePerFrame;
+        posInfluenceSumOneFrame += influenceOneFrame; // reset to 0 at end of every frame
     }
 }
