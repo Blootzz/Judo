@@ -144,11 +144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5041164353796531619, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
       propertyPath: debug_mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5041164354305356725, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
       propertyPath: debug_mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5566607162629963536, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
       propertyPath: m_Layer
