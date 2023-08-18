@@ -204,6 +204,11 @@ public class Foot : MonoBehaviour
     public void Set_isLifted(bool newState)
     {
         isLifted = newState;
+
+        if (isLifted)
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        else
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
     public bool Get_isLifted()
     {
