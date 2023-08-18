@@ -52,18 +52,9 @@ public class Foot : MonoBehaviour
         if (follow.isActive)
             return;
 
-        if (isLifted)
+        if (isLifted) // set by ManualFootControl or AI
         {
             FollowCursor();
-
-            if (Input.GetKey(KeyCode.LeftShift))
-                Set_isReaping(true);
-            else
-                Set_isReaping(false);
-        }
-        else
-        {
-            Set_isReaping(false);
         }
     }
 
@@ -72,7 +63,7 @@ public class Foot : MonoBehaviour
         float newDistanceToOtherFoot = Vector3.Distance(cursor.transform.position, Get_otherFoot().transform.position);
         if (newDistanceToOtherFoot > parentIpponCircle.Get_Diameter())
         {
-            transform.position = Vector3.MoveTowards(transform.position, LimitFootByTrig(), maxSpeed);
+            rb.MovePosition(Vector3.MoveTowards(transform.position, LimitFootByTrig(), maxSpeed * Time.deltaTime));
         }
         else
         {
@@ -184,7 +175,7 @@ public class Foot : MonoBehaviour
     {
         if (on)
         {
-            GetComponent<FollowTarget>().StartFollowing(target);
+            GetComponent<FollowTarget>().StartFollowing(target, true);
         }
         else
         {
@@ -192,7 +183,7 @@ public class Foot : MonoBehaviour
         }
     }
 
-    void Set_isReaping(bool toReapOrNotToReap)
+    public void Set_isReaping(bool toReapOrNotToReap)
     {
         // don't do anything if update doesn't change anything
         if (isReaping == toReapOrNotToReap)

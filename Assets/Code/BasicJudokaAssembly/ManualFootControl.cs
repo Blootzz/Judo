@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class ManualFootControl : MonoBehaviour
 {
     Judoka judoka;
+    Foot activeFoot;
     Vector2 mouseDragStartPoint;
 
     // Start is called before the first frame update
     void Start()
     {
         judoka = GetComponent<Judoka>();
+        activeFoot = judoka.leftFoot; // default to prevent errors
     }
 
     // detect inputs from pllayer
@@ -28,24 +30,37 @@ public class PlayerMovement : MonoBehaviour
         // Pick up left foot
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            judoka.leftFoot.Set_isLifted(true);
+            activeFoot = judoka.leftFoot;
+            activeFoot.Set_isLifted(true);
+            return;
         }
         // Pick up right foot
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            judoka.rightFoot.Set_isLifted(true);
+            activeFoot = judoka.rightFoot;
+            activeFoot.Set_isLifted(true);
+            return;
         }
         // Lower left foot
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             judoka.leftFoot.Set_isLifted(false);
+            return;
         }
         // Lower right foot
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             judoka.rightFoot.Set_isLifted(false);
+            return;
         }
 
+        // Reap
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            activeFoot.Set_isReaping(true);
+        }
+        else
+            activeFoot.Set_isReaping(false);
 
     }
 

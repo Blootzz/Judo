@@ -38,12 +38,15 @@ public class FollowTarget : MonoBehaviour
         }
     }
 
-    public void StartFollowing(GameObject target)
+    public void StartFollowing(GameObject target, bool useOffset)
     {
         this.target = target;
 
         speedMeasure = target.GetComponent<SpeedMeasurementInator>();
-        offset = transform.position - target.transform.position;
+        if (useOffset)
+            offset = transform.position - target.transform.position;
+        else
+            offset = Vector3.zero;
         initialDirection = speedMeasure.Get_velocity().normalized;
 
         GetComponent<Rigidbody2D>().simulated = false;

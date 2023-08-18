@@ -24,7 +24,6 @@ public class FeetCenterline : MonoBehaviour
     // Update position every frame
     void Update()
     {
-        print("LeftFoot: " + leftFoot.transform.position);
         // position 0 = left foot
         colliderPointList[0] = leftFoot.transform.localPosition;
         // position 1 = right foot
