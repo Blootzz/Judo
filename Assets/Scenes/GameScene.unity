@@ -226,17 +226,29 @@ PrefabInstance:
       propertyPath: m_TagString
       value: LeftFoot
       objectReference: {fileID: 0}
+    - target: {fileID: 3471729656589616490, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: updatesToSkip
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< Updated upstream
       value: -0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.48
+=======
+      value: -1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: m_LocalPosition.z
@@ -269,6 +281,10 @@ PrefabInstance:
     - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637961575905098062, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7983932217182887562, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
       propertyPath: maxSpeed
@@ -712,6 +728,75 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1424263509
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2592396541606100208, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: toleranceLoops
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775041581902313554, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_Name
+      value: Test Foot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036501690302260747, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637961575905098062, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983932217182887562, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
+      propertyPath: debug_mode
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 65cf62b70094f5242960d4cfdadeb324, type: 3}
 --- !u!1 &1575988589
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +827,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2acca5d3cb5a8b42abfbfd17d93502a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WASD_STRENGTH: 1
+  CENTERLINE_PULL_STRENGTH: 1
+  CENTERLINE_PUSH_STRENGTH: 1
+  OPPONENT_STRENGTH: 1
+  REAPING_FOOT_STRENGTH: 1
+  balanceBoundary_insideStance: 0.5
+  balanceBoundary_outsideStance: 0.5
   leftFoot: {fileID: 0}
   rightFoot: {fileID: 0}
 --- !u!114 &1575988591
@@ -801,7 +893,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818922228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 0, y: 0, z: 0}
+=======
+  m_LocalPosition: {x: -1.01, y: 0.02, z: 0}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -820,6 +916,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7d289856c04a94d8685722b15f7d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
+=======
+  TOTAL_SPEED_MULTIPLIER: 1
+>>>>>>> Stashed changes
 --- !u!212 &1818922231
 SpriteRenderer:
   m_ObjectHideFlags: 0

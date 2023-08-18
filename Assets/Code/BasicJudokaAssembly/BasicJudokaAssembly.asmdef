@@ -2,7 +2,8 @@
     "name": "BasicJudokaAssmbly",
     "rootNamespace": "",
     "references": [
-        "CursorAssembly"
+        "CursorAssembly",
+        "FollowTargetAssembly"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

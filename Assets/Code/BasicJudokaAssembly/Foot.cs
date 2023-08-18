@@ -4,26 +4,60 @@ using UnityEngine;
 
 public class Foot : MonoBehaviour
 {
+<<<<<<< Updated upstream
+=======
+    [SerializeField] Sprite originalFootSprite;
+    [SerializeField] Sprite reapingFootSprite;
+    [SerializeField] GameObject blockingCurve; // arc opening upwards. Rotate on Z-axis (positive = CW)
+    Rigidbody2D rb;
+>>>>>>> Stashed changes
     Cursor cursor;
     IpponCircle parentIpponCircle;
+    FollowTarget follow;
 
+<<<<<<< Updated upstream
     bool isLifted;
     [SerializeField] float maxSpeed = 1;
+=======
+    [SerializeField] bool debug_mode = false;
+    [SerializeField] bool isLifted = false;
+    [SerializeField] bool isReaping = false; // used when extra button is being held down
+    [SerializeField] float maxSpeed = 10;
+>>>>>>> Stashed changes
     [SerializeField] float MINSCALE = 0.1f;
     [SerializeField] float MAXSCALE = 0.9f;
+    [SerializeField] float BLOCK_LIFETIME = 1f;
     public float weightFraction = 0.5f;
+    public bool disableCollisionCheckOneFrame = false;
     Vector3 localScaleVector;
 
     // Start is called before the first frame update
     void Start()
     {
-        cursor = FindObjectOfType<Cursor>();
-        parentIpponCircle = GetComponentInParent<Judoka>().GetComponentInChildren<IpponCircle>();
+        rb = GetComponent<Rigidbody2D>();
+        follow = GetComponent<FollowTarget>();
+        
+        if (debug_mode)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            return;
+        }
+        else
+        {
+            cursor = FindObjectOfType<Cursor>();
+            parentIpponCircle = GetComponentInParent<Judoka>().GetComponentInChildren<IpponCircle>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (debug_mode)
+            return;
+
+        if (follow.isActive)
+            return;
+
         if (isLifted)
             FollowCursor();
     }
@@ -34,11 +68,19 @@ public class Foot : MonoBehaviour
         float newDistanceToOtherFoot = Vector3.Distance(cursor.transform.position, Get_otherFoot().transform.position);
         if (newDistanceToOtherFoot > parentIpponCircle.Get_Diameter())
         {
+<<<<<<< Updated upstream
             transform.position = Vector3.MoveTowards(transform.position, LimitFootByTrig(), maxSpeed);
         }
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, cursor.transform.position, maxSpeed);
+=======
+            rb.MovePosition(Vector3.MoveTowards(transform.position, LimitFootByTrig(), maxSpeed * Time.deltaTime));
+        }
+        else
+        {
+            rb.MovePosition(Vector3.MoveTowards(transform.position, cursor.transform.position, maxSpeed * Time.deltaTime));
+>>>>>>> Stashed changes
         }
         //AdjustFootBackToIpponCircle();
     }
@@ -55,6 +97,7 @@ public class Foot : MonoBehaviour
         return newPosition;
     }
 
+<<<<<<< Updated upstream
     void AdjustFootBackToIpponCircle()
     {
         float distance = Vector3.Distance(transform.position, Get_otherFoot().transform.position);
@@ -64,6 +107,133 @@ public class Foot : MonoBehaviour
             // set second foot to 2* that difference
             Vector3 ipponMinusPlantedFoot = parentIpponCircle.transform.position - Get_otherFoot().transform.position;
             transform.position = Get_otherFoot().transform.position + 2 * ipponMinusPlantedFoot;
+=======
+    //void AdjustFootBackToIpponCircle()
+    //{
+    //    float distance = Vector3.Distance(transform.position, Get_otherFoot().transform.position);
+    //    if (distance > parentIpponCircle.GetComponent<CircleCollider2D>().radius * 2 * parentIpponCircle.transform.lossyScale.x)
+    //    {
+    //        // get difference vector from center of Ippon
+    //        // set second foot to 2* that difference
+    //        Vector3 ipponMinusPlantedFoot = parentIpponCircle.transform.position - Get_otherFoot().transform.position;
+    //        transform.position = Get_otherFoot().transform.position + 2 * ipponMinusPlantedFoot;
+    //    }
+    //}
+
+    private void OnCollisionEnter2D(Collision2D collider)
+    {
+        // Initial checks
+        if (disableCollisionCheckOneFrame) // used by PreventOtherFootOnTriggerEnter() to prevent both feet from identifying one
+        {
+            disableCollisionCheckOneFrame = false;
+            return;
+        }
+        // if not lifted, other foot should be managing the collision
+        if (!isLifted)
+            return;
+
+        // Foot interactions
+        if (collider.gameObject.GetComponent<Foot>())
+        {
+            Foot opponentFoot = collider.gameObject.GetComponent<Foot>();
+            print(this.gameObject.name+" colliding with: "+opponentFoot.name);
+
+            // this foot lifted, but not reaping
+            if (!this.isReaping)
+            {
+                if (!opponentFoot.isLifted) // other is planted
+                {
+                    print("lifted on planted");
+                    CreateNormalBlock(collider.GetContact(0));
+                    goto FinishCollision;
+                }
+                if (!opponentFoot.isReaping) // other is lifted, but not reaping
+                {
+                    print("lifted on lifted");
+                    // nothing
+                    goto FinishCollision;
+                }
+                if (opponentFoot.isReaping) // other foot is reaping
+                {
+                    print("Evaluate lift vs reap");
+                    this.GetDraggedBy(opponentFoot.gameObject, true);
+                    goto FinishCollision;
+                }
+            }
+
+            // this foot is reaping
+            if (this.isReaping)
+            {
+                if (!opponentFoot.isLifted) // other foot is planted
+                {
+                    // push
+                    opponentFoot.GetDraggedBy(this.gameObject, true);
+                    goto FinishCollision;
+                }
+                if (!opponentFoot.isReaping) // other foot is lifted, but not reaping
+                {
+                    // big push
+                    print("reap on lifted");
+                    opponentFoot.GetDraggedBy(this.gameObject, true);
+                    goto FinishCollision;
+                }
+                if (opponentFoot.isReaping) // other foot is reaping
+                {
+                    print("Reap on reap");
+                    goto FinishCollision;
+                }
+            }
+            Debug.LogWarning("Undetermined foot behavior");
+
+            FinishCollision:
+            {
+                PreventOtherFootOnTriggerEnter(opponentFoot);
+                return;
+            }
+        }
+    }
+
+    void PreventOtherFootOnTriggerEnter(Foot opponentFoot)
+    {
+        opponentFoot.disableCollisionCheckOneFrame = true;
+    }
+
+    void CreateNormalBlock(ContactPoint2D contactPoint)
+    {
+        Vector2 diff = contactPoint.collider.gameObject.transform.position - transform.position;
+        float angleDegrees = Mathf.Rad2Deg * Mathf.Atan2(diff.y, diff.x);
+        //print("Angle: " + angleDegrees);
+        GameObject blockInstance = Instantiate(blockingCurve, contactPoint.point, Quaternion.Euler(0, 0, angleDegrees));
+        Destroy(blockInstance, BLOCK_LIFETIME);
+    }
+
+    void GetDraggedBy(GameObject target, bool on)
+    {
+        if (on)
+        {
+            GetComponent<FollowTarget>().StartFollowing(target);
+        }
+        else
+        {
+            GetComponent<FollowTarget>().StopFollowing();
+        }
+    }
+
+    void Set_isReaping(bool toReapOrNotToReap)
+    {
+        // don't do anything if update doesn't change anything
+        if (isReaping == toReapOrNotToReap)
+            return;
+
+        isReaping = toReapOrNotToReap;
+        if (isReaping)
+        {
+            GetComponent<SpriteRenderer>().sprite = reapingFootSprite;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = originalFootSprite;
+>>>>>>> Stashed changes
         }
     }
 
