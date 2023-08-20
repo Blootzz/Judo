@@ -138,6 +138,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4717672372451062773, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717672372948346339, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717672372948346339, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.38
+      objectReference: {fileID: 0}
     - target: {fileID: 5041164353796531619, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
       propertyPath: isLifted
       value: 0
@@ -153,6 +165,14 @@ PrefabInstance:
     - target: {fileID: 5566607162629963536, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566607162629963537, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566607162629963537, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5566607163478216257, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
       propertyPath: m_Name
@@ -222,9 +242,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5566607163738468313, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566607163738468313, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5566607163745112256, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566607163920301876, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 5566607163920301883, guid: 0b6faf03cad031144ba3ff8ae06fa6cc, type: 3}
       propertyPath: m_Layer
@@ -452,7 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: -1, z: 0}
-  speed: 1
+  speed: 0
   rb: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
