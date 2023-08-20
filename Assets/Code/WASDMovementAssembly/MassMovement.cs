@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DirectionalMovement : MonoBehaviour
+public class MassMovement : MonoBehaviour
 {
     // this class is controlled either by ManualWASDControl or AI
 
@@ -26,6 +26,8 @@ public class DirectionalMovement : MonoBehaviour
     public void Set_direction(Vector2 newInput)
     {
         direction = newInput;
+        if (judoka.opponentMass != null)
+            judoka.opponentMass.AddInfluenceToPosition(judoka.OPPONENT_STRENGTH * direction);
     }
 
 }

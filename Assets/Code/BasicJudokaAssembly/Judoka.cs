@@ -23,6 +23,8 @@ public class Judoka : MonoBehaviour
     [Header("")]
     public bool isEngagedWithOpponent = false;
 
+    [HideInInspector] public MassCenter opponentMass;
+
     // Needs to be called before Start() so that FeetCenterline.Start can use these references
     void Awake()
     {

@@ -108,7 +108,7 @@ public class MassCenter : MonoBehaviour
     void EvaluateIppon()
     {
         if (Vector2.Distance(transform.position, myIpponCirlce.transform.position) >= myIpponCirlce.Get_Diameter() / 2)
-            print("Ippon!");
+            Debug.LogWarning("Ippon!");
     }
 
     void PushOrPullToCenterline(float distanceToCenterline, Vector3 targetPosition)

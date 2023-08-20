@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ManualWASDControl : MonoBehaviour
 {
-    DirectionalMovement directionalMovement;
+    MassMovement directionalMovement;
     Vector2 input = new Vector2(0,0);
 
     // Start is called before the first frame update
     void Start()
     {
-        directionalMovement = GetComponent<DirectionalMovement>();
+        directionalMovement = GetComponent<MassMovement>();
     }
 
     // Update is called once per frame
