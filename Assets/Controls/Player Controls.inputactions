@@ -43,7 +43,7 @@
                 },
                 {
                     "name": "Reap",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "e8849afe-bcc9-4bc4-aa1a-7ec648eb3f1b",
                     "expectedControlType": "Button",
                     "processors": "",

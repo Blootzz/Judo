@@ -7,16 +7,13 @@ public class Foot : MonoBehaviour
     [SerializeField] Sprite originalFootSprite;
     [SerializeField] Sprite reapingFootSprite;
     [SerializeField] GameObject blockingCurve; // arc opening upwards. Rotate on Z-axis (positive = CW)
-    Rigidbody2D rb;
-    Cursor cursor;
     Judoka judoka;
-    IpponCircle parentIpponCircle;
-    FollowTarget follow;
+    [HideInInspector] public IpponCircle parentIpponCircle;
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public FollowTarget follow;
 
-    [SerializeField] bool debug_mode = false;
     [SerializeField] bool isLifted = false;
     [SerializeField] bool isReaping = false; // used when extra button is being held down
-    [SerializeField] float maxSpeed = 10;
     [SerializeField] float MINSCALE = 0.1f;
     [SerializeField] float MAXSCALE = 0.9f;
     [SerializeField] float BLOCK_LIFETIME = 1f;
@@ -30,57 +27,7 @@ public class Foot : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         judoka = GetComponentInParent<Judoka>();
         follow = GetComponent<FollowTarget>();
-        
-        if (debug_mode)
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            return;
-        }
-        else
-        {
-            cursor = FindObjectOfType<Cursor>();
-            parentIpponCircle = judoka.GetComponentInChildren<IpponCircle>();
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (debug_mode)
-            return;
-
-        if (follow.isActive)
-            return;
-
-        if (isLifted) // set by ManualFootControl or AI
-        {
-            FollowCursor();
-        }
-    }
-
-    void FollowCursor()
-    {
-        float newDistanceToOtherFoot = Vector3.Distance(cursor.transform.position, Get_otherFoot().transform.position);
-        if (newDistanceToOtherFoot > parentIpponCircle.Get_Diameter())
-        {
-            rb.MovePosition(Vector3.MoveTowards(transform.position, LimitFootByTrig(), maxSpeed * Time.deltaTime));
-        }
-        else
-        {
-            rb.MovePosition(Vector3.MoveTowards(transform.position, cursor.transform.position, maxSpeed * Time.deltaTime));
-        }
-    }
-
-    Vector3 LimitFootByTrig()
-    {
-        Vector3 cursorMinusOtherFoot = cursor.transform.position - Get_otherFoot().transform.position;
-        float theta = Mathf.Atan2(cursorMinusOtherFoot.y, cursorMinusOtherFoot.x); // RADIANS // 0 East, +/- 180 West, 90 North, -90 South
-
-        Vector3 newPosition = Vector3.zero;
-        newPosition.x = Get_otherFoot().transform.position.x + parentIpponCircle.Get_Diameter() * Mathf.Cos(theta);
-        newPosition.y = Get_otherFoot().transform.position.y + parentIpponCircle.Get_Diameter() * Mathf.Sin(theta);
-
-        return newPosition;
+        parentIpponCircle = judoka.GetComponentInChildren<IpponCircle>();
     }
 
     private void OnCollisionEnter2D(Collision2D collider)
