@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ManualWASDControl : MonoBehaviour
 {
@@ -16,10 +17,18 @@ public class ManualWASDControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
-        input = input.normalized;
+        //input.x = Input.GetAxisRaw("Horizontal");
+        //input.y = Input.GetAxisRaw("Vertical");
+        //input = input.normalized;
 
-        directionalMovement.Set_direction(input);
+        //directionalMovement.Set_direction(input);
     }
+
+    public void SendInputToMovement(InputAction.CallbackContext context)
+    {
+        directionalMovement.Set_direction(context.ReadValue<Vector2>());
+        print(context.ReadValue<Vector2>());
+        print(context.action.name);
+    }
+
 }

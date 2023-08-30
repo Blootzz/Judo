@@ -63,7 +63,7 @@ public class MassCenter : MonoBehaviour
         // if that doesn't work, get smallest distance to either point
 
         centerLineSlope = parentJudoka.rightFoot.transform.position - parentJudoka.leftFoot.transform.position; // left-right vs. right-left doesn't matter -> direction vector will be negated
-        raycastDirection = new Vector2(1 / centerLineSlope.x, -1 / centerLineSlope.y); // negative reciprocal to find direction perpendicular to centerLineSlope
+        raycastDirection = new Vector2(Mathf.Clamp(1 / centerLineSlope.x, -100, 100), Mathf.Clamp(-1 / centerLineSlope.y, -100, 100)); // negative reciprocal to find direction perpendicular to centerLineSlope
 
         hitObjects = Physics2D.RaycastAll(transform.position, raycastDirection, myIpponCirlce.Get_Diameter(), layerOfCenterline);
         Debug.DrawRay(transform.position, raycastDirection, Color.blue, 0.1f);
@@ -115,12 +115,12 @@ public class MassCenter : MonoBehaviour
     {
         if (distanceToCenterline <= parentJudoka.balanceBoundary_insideStance)
         {
-            //print("CENTERLINE <== pull");
+            print("CENTERLINE <== pull");
             AddInfluenceToPosition(parentJudoka.CENTERLINE_PULL_STRENGTH * (targetPosition - transform.position));
         }
         else
         {
-            //print("CENTERLINE push ==>");
+            print("CENTERLINE push ==>");
             AddInfluenceToPosition(parentJudoka.CENTERLINE_PUSH_STRENGTH * (transform.position - targetPosition));
         }
     }
@@ -129,12 +129,12 @@ public class MassCenter : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, closestFootPos) <= parentJudoka.balanceBoundary_outsideStance)
         {
-            //print("FOOT <== pull");
+            print("FOOT <== pull");
             AddInfluenceToPosition(parentJudoka.CENTERLINE_PULL_STRENGTH * (closestFootPos - new Vector2(transform.position.x, transform.position.y)));
         }
         else
         {
-            //print("FOOT push ==>");
+            print("FOOT push ==>");
             AddInfluenceToPosition(parentJudoka.CENTERLINE_PUSH_STRENGTH * (new Vector2(transform.position.x, transform.position.y) - closestFootPos));
         }
     }
