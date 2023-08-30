@@ -33,7 +33,8 @@ public class FootControlMouse : MonoBehaviour
 
     public void TranslateByDelta(InputAction.CallbackContext context)
     {
-        footController.Set_moveTargetDestination(context.ReadValue<Vector2>(), true); // true means the parameter will be added to existing position
+        if (!followCursorInsteadOfDelta)
+            footController.Set_moveTargetDestination(context.ReadValue<Vector2>(), true); // true means the parameter will be added to existing position
     }
 
     // Events
