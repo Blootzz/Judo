@@ -46,6 +46,7 @@ public class FootController : MonoBehaviour
         activeFoot.Set_isLifted(true);
         activeFoot.Set_isReaping(instantlyTryingToReap);
         activeFoot.Get_otherFoot().Set_isLifted(false);
+        moveTargetDestination = activeFoot.transform.position;
     }
 
     public void PickUpRightFoot()
@@ -54,6 +55,7 @@ public class FootController : MonoBehaviour
         activeFoot.Set_isLifted(true);
         activeFoot.Set_isReaping(instantlyTryingToReap);
         activeFoot.Get_otherFoot().Set_isLifted(false);
+        moveTargetDestination = activeFoot.transform.position;
     }
 
     public void LowerLeftFoot()
@@ -80,6 +82,7 @@ public class FootController : MonoBehaviour
         float newDistanceToOtherFoot = Vector3.Distance(moveTargetDestination, activeFoot.Get_otherFoot().transform.position);
         if (newDistanceToOtherFoot > activeFoot.parentIpponCircle.Get_Diameter())
         {
+            print("Limiting by trig");
             Vector2 targetDestinationMinusOtherFoot = moveTargetDestination - new Vector2(activeFoot.Get_otherFoot().transform.position.x, activeFoot.Get_otherFoot().transform.position.x);
             float theta = Mathf.Atan2(targetDestinationMinusOtherFoot.y, targetDestinationMinusOtherFoot.x); // RADIANS // 0 East, +/- 180 West, 90 North, -90 South
 
@@ -90,7 +93,7 @@ public class FootController : MonoBehaviour
 
     void MoveFoot()
     {
-        activeFoot.rb.MovePosition(Vector3.MoveTowards(transform.position, moveTargetDestination, maxSpeed * Time.deltaTime));
+        activeFoot.rb.MovePosition(Vector3.MoveTowards(activeFoot.transform.position, moveTargetDestination, maxSpeed * Time.deltaTime));
     }
 
     public Vector2 Get_moveTargetDestination() => moveTargetDestination;
