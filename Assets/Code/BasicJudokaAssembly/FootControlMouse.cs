@@ -23,6 +23,7 @@ public class FootControlMouse : MonoBehaviour
         {
             UnityEngine.Cursor.visible = false; // makes mouse invisible
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            Debug.LogWarning("Hiding Mouse");
         }
     }
 
