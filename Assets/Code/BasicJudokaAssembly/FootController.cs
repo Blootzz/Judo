@@ -6,7 +6,8 @@ public class FootController : MonoBehaviour
 {
     [SerializeField] bool debug_mode = false;
     [SerializeField] float maxSpeed = 10;
-    Vector2 moveTargetDestination = new Vector2(0, 0);
+    Vector3 moveTargetDirection = new Vector3(0, 0); // updated in FootControlMouse every time the input is detected. Not normalized
+    Vector3 targetDestination = new Vector3(0, 0); // updated in FootControlMouse every time the input is detected. Not normalized
     bool instantlyTryingToReap = false;
 
     Judoka judoka;
@@ -28,8 +29,9 @@ public class FootController : MonoBehaviour
 
         if (activeFoot.Get_isLifted()) // set by ManualFootControl or AI
         {
-            // Use moveTargetDestination to figure out where the foot should really go
-            LimitFootByTrig();
+            // Use targetDestination to figure out where the foot should really go
+            targetDestination = moveTargetDirection + activeFoot.transform.position;
+            LimitFootByTrig(); // corrects targetDestination if necessary
             MoveFoot();
         }
     }
@@ -46,7 +48,7 @@ public class FootController : MonoBehaviour
         activeFoot.Set_isLifted(true);
         activeFoot.Set_isReaping(instantlyTryingToReap);
         activeFoot.Get_otherFoot().Set_isLifted(false);
-        moveTargetDestination = activeFoot.transform.position;
+        moveTargetDirection = Vector3.zero;
     }
 
     public void PickUpRightFoot()
@@ -55,7 +57,7 @@ public class FootController : MonoBehaviour
         activeFoot.Set_isLifted(true);
         activeFoot.Set_isReaping(instantlyTryingToReap);
         activeFoot.Get_otherFoot().Set_isLifted(false);
-        moveTargetDestination = activeFoot.transform.position;
+        moveTargetDirection = Vector3.zero;
     }
 
     public void LowerLeftFoot()
@@ -79,28 +81,27 @@ public class FootController : MonoBehaviour
     // Movement
     void LimitFootByTrig()
     {
-        float newDistanceToOtherFoot = Vector3.Distance(moveTargetDestination, activeFoot.Get_otherFoot().transform.position);
+        float newDistanceToOtherFoot = Vector3.Distance(targetDestination, activeFoot.Get_otherFoot().transform.position);
         if (newDistanceToOtherFoot > activeFoot.parentIpponCircle.Get_Diameter())
         {
-            Vector2 targetDestinationMinusOtherFoot = moveTargetDestination - new Vector2(activeFoot.Get_otherFoot().transform.position.x, activeFoot.Get_otherFoot().transform.position.y);
+            Vector2 targetDestinationMinusOtherFoot = targetDestination - activeFoot.Get_otherFoot().transform.position;
             float theta = Mathf.Atan2(targetDestinationMinusOtherFoot.y, targetDestinationMinusOtherFoot.x); // RADIANS // 0 East, +/- 180 West, 90 North, -90 South
 
-            moveTargetDestination.x = activeFoot.Get_otherFoot().transform.position.x + activeFoot.parentIpponCircle.Get_Diameter() * Mathf.Cos(theta);
-            moveTargetDestination.y = activeFoot.Get_otherFoot().transform.position.y + activeFoot.parentIpponCircle.Get_Diameter() * Mathf.Sin(theta);;
+            targetDestination.x = activeFoot.Get_otherFoot().transform.position.x + activeFoot.parentIpponCircle.Get_Diameter() * Mathf.Cos(theta);
+            targetDestination.y = activeFoot.Get_otherFoot().transform.position.y + activeFoot.parentIpponCircle.Get_Diameter() * Mathf.Sin(theta);;
         }
     }
 
-    void MoveFoot()
+    void MoveFoot() // called in Update() here
     {
-        activeFoot.rb.MovePosition(Vector3.MoveTowards(activeFoot.transform.position, moveTargetDestination, maxSpeed * Time.deltaTime));
+        activeFoot.rb.MovePosition(Vector3.MoveTowards(activeFoot.transform.position, targetDestination, maxSpeed * Time.deltaTime));
     }
 
-    public Vector2 Get_moveTargetDestination() => moveTargetDestination;
-    public void Set_moveTargetDestination(Vector2 here, bool addToFoot)
+    public void Set_moveTarget(Vector3 position, bool treatAsDestination)
     {
-        if (!addToFoot)
-            moveTargetDestination = here;
+        if (treatAsDestination)
+            moveTargetDirection = position - activeFoot.transform.position; // treats position like destination
         else
-            moveTargetDestination = here + new Vector2(activeFoot.transform.position.x, activeFoot.transform.position.y);
+            moveTargetDirection = position; // treats position like destination
     }
 }

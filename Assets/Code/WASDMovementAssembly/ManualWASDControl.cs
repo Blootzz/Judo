@@ -26,9 +26,8 @@ public class ManualWASDControl : MonoBehaviour
 
     public void SendInputToMovement(InputAction.CallbackContext context)
     {
+        // if no new event is called, this direction applies to the next frame
         directionalMovement.Set_direction(context.ReadValue<Vector2>());
-        print(context.ReadValue<Vector2>());
-        print(context.action.name);
     }
 
 }

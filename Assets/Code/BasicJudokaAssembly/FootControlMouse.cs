@@ -38,7 +38,7 @@ public class FootControlMouse : MonoBehaviour
     void FollowCursor() // only to be used if not using the event-based input
     {
         if (cursor != null)
-            footController.Set_moveTargetDestination(cursor.transform.position, false); // false means no other operations are done to moveTargetDestination
+            footController.Set_moveTarget(cursor.transform.position, true); // true means input will be treated like destination
         else
             Debug.LogWarning("Trying to follow non-existant cursor");
     }
@@ -65,8 +65,7 @@ public class FootControlMouse : MonoBehaviour
                     Debug.LogWarning("No input device option found for moving");
                     break;
             }
-            footController.Set_moveTargetDestination(context.ReadValue<Vector2>() * sensitivity, true); // true means the parameter will be added to existing position
-            //print("Adding: " + context.ReadValue<Vector2>() / 10);
+            footController.Set_moveTarget(context.ReadValue<Vector2>() * sensitivity, false); // false means input will be treated as direction
         }
     }
 
