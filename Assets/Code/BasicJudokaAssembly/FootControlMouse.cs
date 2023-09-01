@@ -12,10 +12,18 @@ public class FootControlMouse : MonoBehaviour
     [SerializeField] float GAMEPAD_SENSITIVITY = 1;
     float sensitivity = 1;
 
+    [SerializeField] bool HIDE_MOUSE = false;
+
     void Start()
     {
         footController = GetComponent<FootController>();
         cursor = FindObjectOfType<Cursor>();
+
+        if (HIDE_MOUSE)
+        {
+            UnityEngine.Cursor.visible = false; // makes mouse invisible
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     // detect inputs from pllayer

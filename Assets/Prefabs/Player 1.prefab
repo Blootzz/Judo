@@ -47,6 +47,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8790988515709763942, guid: 65d50f34dad590e4289a855d96650552, type: 3}
+      propertyPath: MOUSE_SENSITIVITY
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790988515709763942, guid: 65d50f34dad590e4289a855d96650552, type: 3}
+      propertyPath: GAMEPAD_SENSITIVITY
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763961, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763961, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.72
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763961, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: m_LocalPosition.z

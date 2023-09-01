@@ -82,8 +82,7 @@ public class FootController : MonoBehaviour
         float newDistanceToOtherFoot = Vector3.Distance(moveTargetDestination, activeFoot.Get_otherFoot().transform.position);
         if (newDistanceToOtherFoot > activeFoot.parentIpponCircle.Get_Diameter())
         {
-            print("Limiting by trig");
-            Vector2 targetDestinationMinusOtherFoot = moveTargetDestination - new Vector2(activeFoot.Get_otherFoot().transform.position.x, activeFoot.Get_otherFoot().transform.position.x);
+            Vector2 targetDestinationMinusOtherFoot = moveTargetDestination - new Vector2(activeFoot.Get_otherFoot().transform.position.x, activeFoot.Get_otherFoot().transform.position.y);
             float theta = Mathf.Atan2(targetDestinationMinusOtherFoot.y, targetDestinationMinusOtherFoot.x); // RADIANS // 0 East, +/- 180 West, 90 North, -90 South
 
             moveTargetDestination.x = activeFoot.Get_otherFoot().transform.position.x + activeFoot.parentIpponCircle.Get_Diameter() * Mathf.Cos(theta);
