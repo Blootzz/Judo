@@ -23,7 +23,7 @@ public class FootController : MonoBehaviour
         if (debug_mode)
             return;
 
-        if (activeFoot.follow.isActive) // if being dragged by something
+        if (activeFoot.follow == null || activeFoot.follow.isActive) // if being dragged by something
             return;
 
         if (activeFoot.Get_isLifted()) // set by ManualFootControl or AI

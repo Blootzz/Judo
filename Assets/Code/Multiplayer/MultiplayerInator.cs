@@ -5,23 +5,20 @@ using UnityEngine.UI;
 
 public class MultiplayerInator : MonoBehaviour
 {
-    [SerializeField] GameObject P1SpawnCircle;
-    [SerializeField] GameObject P2SpawnCircle;
+    [SerializeField] Transform P1SpawnCircle;
+    [SerializeField] Transform P2SpawnCircle;
     [SerializeField] GameObject p1Panel;
     [SerializeField] GameObject p2Panel;
-    Vector2 p1StartPos;
-    Vector2 p2StartPos;
 
-    bool isWaitingOnP1 = true;
+    // flags
+    bool hasP1PressedStart = false;
+    bool hasP1SpawnBeenAssigned = false;
 
     void Start()
     {
-        // assign positions
-        p1StartPos = P1SpawnCircle.transform.position;
-        p2StartPos = P2SpawnCircle.transform.position;
         // make spawn points invisible in editor
-        P1SpawnCircle.SetActive(false);
-        P2SpawnCircle.SetActive(false);
+        P1SpawnCircle.gameObject.SetActive(false);
+        P2SpawnCircle.gameObject.SetActive(false);
         
         BeginSpawnIn();
     }
@@ -30,18 +27,37 @@ public class MultiplayerInator : MonoBehaviour
     {
         p1Panel.SetActive(true);
         p2Panel.SetActive(true);
-        isWaitingOnP1 = true;
+
+        // reset flags
+        hasP1PressedStart = false;
+        hasP1SpawnBeenAssigned = false;
     }
 
-    public void MakeNextPanelDisappear()
+    public void MakeNextPanelDisappear() // called by "Player Joined Event" in MultiplayerInator's Player Input Manager
     {
-        if (isWaitingOnP1)
+        if (!hasP1PressedStart)
         {
             p1Panel.GetComponent<Animator>().SetTrigger("Shrink");
-            isWaitingOnP1 = false;
+            hasP1PressedStart = true;
         }
         else
+        {
             p2Panel.GetComponent<Animator>().SetTrigger("Shrink");
+            hasP1PressedStart = false; // in case this class needs to be used again
+        }
+    }
 
+    public Vector2 GetNextSpawnPoint()
+    {
+        if (!hasP1SpawnBeenAssigned)
+        {
+            hasP1SpawnBeenAssigned = true;
+            return P1SpawnCircle.position;
+        }
+        else
+        {
+            hasP1SpawnBeenAssigned = false; // in case this class needs to be used again
+            return P2SpawnCircle.position;
+        }
     }
 }

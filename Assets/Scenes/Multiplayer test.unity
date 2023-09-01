@@ -667,6 +667,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5109392466933848588, guid: cc46ecedc5ec3ba4786a50305eef9368, type: 3}
+        m_TargetAssemblyTypeName: AssignToSpawnPoint, Multiplayer
+        m_MethodName: AssignSpawnPoint
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -746,8 +758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6adf6c76105d33545838b58cb862199d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P1SpawnCircle: {fileID: 1402013274}
-  P2SpawnCircle: {fileID: 323807109}
+  P1SpawnCircle: {fileID: 1402013275}
+  P2SpawnCircle: {fileID: 323807110}
   p1Panel: {fileID: 263095298}
   p2Panel: {fileID: 1985832942}
 --- !u!1 &1073675998

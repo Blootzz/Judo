@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763940, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: m_Name
-      value: Player 1
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763942, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: MOUSE_SENSITIVITY
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763961, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.22
+      value: 2.11
       objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763961, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: m_LocalPosition.z
@@ -267,6 +267,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5109392466933848588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806745093633213191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc38e026a700d04b999775c7346571e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1806745093633213211 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8790988515709763960, guid: 65d50f34dad590e4289a855d96650552, type: 3}
