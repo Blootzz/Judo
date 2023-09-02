@@ -10,12 +10,17 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
     void OnEnable()
     {
         GetPlayerInfoFromMultiplayerInator();
+        SetSpawnPosAndLayers();
     }
 
     void GetPlayerInfoFromMultiplayerInator()
     {
         // gets playerNum and playerPos
         FindObjectOfType<MultiplayerInator>().SetupPlayer(out playerNum, out playerPos);
+    }
+
+    void SetSpawnPosAndLayers()
+    {
         gameObject.name = "Player" + playerNum.ToString(); // rename object
         transform.position = playerPos; // set position
 

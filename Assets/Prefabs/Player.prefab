@@ -59,6 +59,14 @@ PrefabInstance:
       propertyPath: GAMEPAD_SENSITIVITY
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 8790988515709763943, guid: 65d50f34dad590e4289a855d96650552, type: 3}
+      propertyPath: WASD_STRENGTH
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790988515709763943, guid: 65d50f34dad590e4289a855d96650552, type: 3}
+      propertyPath: OPPONENT_STRENGTH
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763961, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: m_RootOrder
       value: 0
