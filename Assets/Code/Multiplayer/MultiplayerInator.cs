@@ -19,7 +19,7 @@ public class MultiplayerInator : MonoBehaviour
         // make spawn points invisible in editor
         P1SpawnCircle.gameObject.SetActive(false);
         P2SpawnCircle.gameObject.SetActive(false);
-        
+
         BeginSpawnIn();
     }
 
@@ -47,17 +47,19 @@ public class MultiplayerInator : MonoBehaviour
         }
     }
 
-    public Vector2 GetNextSpawnPoint()
+    public void SetupPlayer(out short pNum, out Vector2 spawnPos)
     {
         if (!hasP1SpawnBeenAssigned)
         {
             hasP1SpawnBeenAssigned = true;
-            return P1SpawnCircle.position;
+            pNum = 1;
+            spawnPos = P1SpawnCircle.position;
         }
         else
         {
             hasP1SpawnBeenAssigned = false; // in case this class needs to be used again
-            return P2SpawnCircle.position;
+            pNum = 2;
+            spawnPos = P2SpawnCircle.position;
         }
     }
 }

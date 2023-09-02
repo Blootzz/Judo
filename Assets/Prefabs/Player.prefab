@@ -47,6 +47,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8790988515709763940, guid: 65d50f34dad590e4289a855d96650552, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763942, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: MOUSE_SENSITIVITY
       value: 0.01
@@ -61,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763961, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -9.06
       objectReference: {fileID: 0}
     - target: {fileID: 8790988515709763961, guid: 65d50f34dad590e4289a855d96650552, type: 3}
       propertyPath: m_LocalPosition.y
