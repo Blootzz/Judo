@@ -6,11 +6,13 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
 {
     short playerNum = 0;
     Vector2 playerPos;
+    [SerializeField] GameObject ColorPrefab;
 
     void OnEnable()
     {
         GetPlayerInfoFromMultiplayerInator();
         SetSpawnPosAndLayers();
+        AssignColor();
     }
 
     void GetPlayerInfoFromMultiplayerInator()
@@ -34,7 +36,15 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
                 childOfChildTransform.gameObject.layer = LayerMask.NameToLayer("Player" + playerNum.ToString()); // child of child
         }
         #endregion
+    }
 
-        // SET LAYER AND COLORS HERE TOO??
+    void AssignColor()
+    {
+        Color32[] myPalette = ColorPrefab.GetComponent<Colors>().Get_ColorPaletteForPlayer(playerNum);
+        GetComponentInChildren<CenterOfBalance>().gameObject.GetComponent<SpriteRenderer>().color = myPalette[0];
+        GetComponentInChildren<IpponCircle>().gameObject.GetComponent<SpriteRenderer>().color = myPalette[1];
+        GetComponentInChildren<MassCenter>().gameObject.GetComponent<SpriteRenderer>().color = myPalette[2];
+        GetComponent<Judoka>().leftFoot.gameObject.GetComponent<SpriteRenderer>().color = myPalette[3];
+        GetComponent<Judoka>().rightFoot.gameObject.GetComponent<SpriteRenderer>().color = myPalette[4];
     }
 }
