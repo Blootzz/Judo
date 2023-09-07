@@ -8,7 +8,7 @@ public class MassCenter : MonoBehaviour
     IpponCircle myIpponCirlce;
     float distanceToLeftFoot;
     float distanceToRightFoot;
-    Vector2 posInfluenceSumOneFrame = new Vector2(0,0);
+    Vector2 posInfluenceSumOneFrame = new Vector2(0, 0);
     public float TOTAL_SPEED_MULTIPLIER = 1;
 
     // variables for detecting proximity to FeetCenterline
@@ -32,7 +32,11 @@ public class MassCenter : MonoBehaviour
     {
         UpdateFootDistances(); // measures distances from feet to here
         UpdateFootWeightDistribution(); // depending on distance from center of ippon, change feet weight
-        EvaluateMassProximityInfluence(); // depending on proximity to center line, push or pull towards center point or closest foot
+
+        // if neither foot is being dragged by opponent reaping
+        if((parentJudoka.leftFoot.follow != null && !parentJudoka.leftFoot.follow.isActive)
+            && (parentJudoka.rightFoot.follow != null && !parentJudoka.rightFoot.follow.isActive))
+            EvaluateMassProximityInfluence(); // depending on proximity to center line, push or pull towards center point or closest foot
 
         ExecuteAllInfluences();
         posInfluenceSumOneFrame = Vector2.zero; // reset for next frame
@@ -102,13 +106,15 @@ public class MassCenter : MonoBehaviour
     void ExecuteAllInfluences()
     {
         //print(posInfluenceSumPerFrame);
+        //if (transform.parent.name.Equals("Player1"))
+        //    print("Sum: " + posInfluenceSumOneFrame);
         transform.position += Vector3.MoveTowards(Vector2.zero, posInfluenceSumOneFrame, TOTAL_SPEED_MULTIPLIER * Time.deltaTime);
     }
 
     void EvaluateIppon()
     {
         if (Vector2.Distance(transform.position, myIpponCirlce.transform.position) >= myIpponCirlce.Get_Diameter() / 2)
-            Debug.LogWarning("Ippon!");
+            Debug.LogWarning("Ippon! " + transform.parent.name);
     }
 
     void PushOrPullToCenterline(float distanceToCenterline, Vector3 targetPosition)

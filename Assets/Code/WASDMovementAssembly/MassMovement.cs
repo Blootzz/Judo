@@ -20,14 +20,17 @@ public class MassMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // move self
         massCenter.AddInfluenceToPosition(direction * judoka.WASD_STRENGTH);
+
+        // move opponent if engaged
+        if (judoka.opponentMass != null)
+            judoka.opponentMass.AddInfluenceToPosition(judoka.KUZUSHI_STRENGTH * direction);
     }
 
     public void Set_direction(Vector2 newInput)
     {
-        direction = newInput;
-        if (judoka.opponentMass != null)
-            judoka.opponentMass.AddInfluenceToPosition(judoka.KUZUSHI_STRENGTH * direction);
+        direction = newInput; // apply this value every frame
     }
 
 }

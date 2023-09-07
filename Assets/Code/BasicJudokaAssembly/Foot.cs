@@ -10,7 +10,7 @@ public class Foot : MonoBehaviour
     Judoka judoka;
     [HideInInspector] public IpponCircle parentIpponCircle;
     [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public FollowTarget follow;
+     public FollowTarget follow;
 
     [SerializeField] bool isLifted = false;
     [SerializeField] bool isReaping = false; // used when extra button is being held down
@@ -27,6 +27,7 @@ public class Foot : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         judoka = GetComponentInParent<Judoka>();
         follow = GetComponent<FollowTarget>();
+        //print(name+"Following: "+ follow.name);
         parentIpponCircle = judoka.GetComponentInChildren<IpponCircle>();
     }
 
