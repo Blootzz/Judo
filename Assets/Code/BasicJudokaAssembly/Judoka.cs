@@ -9,7 +9,7 @@ public class Judoka : MonoBehaviour
     public float WASD_STRENGTH = 1;
     public float CENTERLINE_PULL_STRENGTH = 1;
     public float CENTERLINE_PUSH_STRENGTH = 1;
-    public float OPPONENT_STRENGTH = 1;
+    public float KUZUSHI_STRENGTH = 1;
     public float REAPING_FOOT_STRENGTH = 1;
 
     [Header("Push/Pull Boundary")]

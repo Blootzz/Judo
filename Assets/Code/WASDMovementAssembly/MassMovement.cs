@@ -27,7 +27,7 @@ public class MassMovement : MonoBehaviour
     {
         direction = newInput;
         if (judoka.opponentMass != null)
-            judoka.opponentMass.AddInfluenceToPosition(judoka.OPPONENT_STRENGTH * direction);
+            judoka.opponentMass.AddInfluenceToPosition(judoka.KUZUSHI_STRENGTH * direction);
     }
 
 }
