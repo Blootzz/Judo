@@ -373,7 +373,7 @@ MonoBehaviour:
       - m_Target: {fileID: -5403008304708929264}
         m_TargetAssemblyTypeName: PauseAbility, Pause
         m_MethodName: TogglePause
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -389,7 +389,7 @@ MonoBehaviour:
       - m_Target: {fileID: -5403008304708929264}
         m_TargetAssemblyTypeName: PauseAbility, Pause
         m_MethodName: TogglePause
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

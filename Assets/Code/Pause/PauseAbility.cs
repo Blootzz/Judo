@@ -8,7 +8,6 @@ public class PauseAbility : MonoBehaviour
 {
     public void TogglePause(InputAction.CallbackContext context)
     {
-        print("Attempting to toggle pause");
         if (!context.started)
             return;
 
