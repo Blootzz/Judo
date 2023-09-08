@@ -47,7 +47,6 @@ public class Foot : MonoBehaviour
         if (collider.gameObject.GetComponent<Foot>())
         {
             Foot opponentFoot = collider.gameObject.GetComponent<Foot>();
-            print(this.gameObject.name+" colliding with: "+opponentFoot.name);
 
             // this foot lifted, but not reaping
             if (!this.isReaping)
@@ -79,6 +78,7 @@ public class Foot : MonoBehaviour
                 {
                     // push
                     opponentFoot.GetDraggedBy(this.gameObject, true);
+                    //judoka.REAPING_PUSH_STRENGTH
                     goto FinishCollision;
                 }
                 if (!opponentFoot.isReaping) // other foot is lifted, but not reaping

@@ -21,11 +21,11 @@ public class MassMovement : MonoBehaviour
     void Update()
     {
         // move self
-        massCenter.AddInfluenceToPosition(direction * judoka.WASD_STRENGTH);
+        massCenter.AddInfluenceToPosition(direction * judoka.Get_WASD_STRENGTH());
 
         // move opponent if engaged
         if (judoka.opponentMass != null)
-            judoka.opponentMass.AddInfluenceToPosition(judoka.KUZUSHI_STRENGTH * direction);
+            judoka.opponentMass.AddInfluenceToPosition(judoka.Get_KUZUSHI_STRENGTH() * direction);
     }
 
     public void Set_direction(Vector2 newInput)

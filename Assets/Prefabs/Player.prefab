@@ -276,6 +276,86 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: aa0b3ea4-aa20-4a3f-a2c4-f547baf7d6f6
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1806745093633213189}
+        m_TargetAssemblyTypeName: FootControlMouse, BasicJudokaAssmbly
+        m_MethodName: MoveEitherStick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c32a1409-59ab-4618-89fc-3923dee3ea3c
+    m_ActionName: Controller2/Move Right Stick[/XInputControllerWindows/rightStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1806745093633213189}
+        m_TargetAssemblyTypeName: FootControlMouse, BasicJudokaAssmbly
+        m_MethodName: MoveEitherStick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3eaef845-6a91-4028-a683-154b7b298792
+    m_ActionName: Controller2/Move Left Stick[/XInputControllerWindows/leftStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1806745093633213189}
+        m_TargetAssemblyTypeName: FootControlMouse, BasicJudokaAssmbly
+        m_MethodName: PickUpRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8f944807-28b3-42c6-8cee-dfc3a3232bc1
+    m_ActionName: Controller2/Lift Right Foot[/Mouse/rightButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1806745093633213189}
+        m_TargetAssemblyTypeName: FootControlMouse, BasicJudokaAssmbly
+        m_MethodName: PickUpLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c50af1e2-d0d8-45a5-bde3-4b12a24b618e
+    m_ActionName: Controller2/Lift Left Foot[/Mouse/leftButton,/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1806745093633213189}
+        m_TargetAssemblyTypeName: FootControlMouse, BasicJudokaAssmbly
+        m_MethodName: Reap
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6feaaeef-f80b-4790-ae26-00358a0909af
+    m_ActionName: Controller2/Reap[/Keyboard/shift,/XInputControllerWindows/leftShoulder,/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

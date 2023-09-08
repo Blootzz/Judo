@@ -122,12 +122,12 @@ public class MassCenter : MonoBehaviour
         if (distanceToCenterline <= parentJudoka.balanceBoundary_insideStance)
         {
             //print("CENTERLINE <== pull");
-            AddInfluenceToPosition(parentJudoka.CENTERLINE_PULL_STRENGTH * (targetPosition - transform.position));
+            AddInfluenceToPosition(parentJudoka.Get_CENTERLINE_PULL_STRENGTH() * (targetPosition - transform.position));
         }
         else
         {
             //print("CENTERLINE push ==>");
-            AddInfluenceToPosition(parentJudoka.CENTERLINE_PUSH_STRENGTH * (transform.position - targetPosition));
+            AddInfluenceToPosition(parentJudoka.Get_CENTERLINE_PUSH_STRENGTH() * (transform.position - targetPosition));
         }
     }
 
@@ -136,12 +136,12 @@ public class MassCenter : MonoBehaviour
         if (Vector2.Distance(transform.position, closestFootPos) <= parentJudoka.balanceBoundary_outsideStance)
         {
             //print("FOOT <== pull");
-            AddInfluenceToPosition(parentJudoka.CENTERLINE_PULL_STRENGTH * (closestFootPos - new Vector2(transform.position.x, transform.position.y)));
+            AddInfluenceToPosition(parentJudoka.Get_CENTERLINE_PULL_STRENGTH() * (closestFootPos - new Vector2(transform.position.x, transform.position.y)));
         }
         else
         {
             //print("FOOT push ==>");
-            AddInfluenceToPosition(parentJudoka.CENTERLINE_PUSH_STRENGTH * (new Vector2(transform.position.x, transform.position.y) - closestFootPos));
+            AddInfluenceToPosition(parentJudoka.Get_CENTERLINE_PUSH_STRENGTH() * (new Vector2(transform.position.x, transform.position.y) - closestFootPos));
         }
     }
 

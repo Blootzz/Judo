@@ -12,6 +12,9 @@ public class FootControlMouse : MonoBehaviour
     [SerializeField] float GAMEPAD_SENSITIVITY = 1;
     float sensitivity = 1;
 
+    // for Controller2 action map
+    bool isLeftStickTheFootStick = true;
+
     [SerializeField] bool HIDE_MOUSE = false;
 
     void Start()
@@ -68,25 +71,53 @@ public class FootControlMouse : MonoBehaviour
             footController.Set_moveTarget(context.ReadValue<Vector2>() * sensitivity, false); // false means input will be treated as direction
         }
     }
-
     public void PickUpLeft(InputAction.CallbackContext context)
     {
         if (context.ReadValueAsButton() == true)
+        {
             footController.PickUpLeftFoot();
+            // for Controller2 input map
+            if (GetComponent<PlayerInput>().currentActionMap.name.Equals("Controller2"))
+                isLeftStickTheFootStick = true;
+        }
         else
             footController.LowerLeftFoot();
     }
     public void PickUpRight(InputAction.CallbackContext context)
     {
         if (context.ReadValueAsButton() == true)
+        {
             footController.PickUpRightFoot();
+            // for Controller2 input map
+            if (GetComponent<PlayerInput>().currentActionMap.name.Equals("Controller2"))
+                isLeftStickTheFootStick = false;
+        }
         else
             footController.LowerRightFoot();
     }
-
     public void Reap(InputAction.CallbackContext context)
     {
         footController.ReapOnOrOff(context.ReadValueAsButton());
+    }
+    #endregion
+
+    #region Controller2 Map Events
+    public void MoveEitherStick(InputAction.CallbackContext context)
+    {
+        if (context.action.name.Equals("Move Left Stick")) // if left stick is being used
+        {
+            if (isLeftStickTheFootStick)
+                TranslateByDelta(context);
+            else
+                GetComponent<MassMovement>().Set_direction(context.ReadValue<Vector2>());
+        }
+        else // if right stick is being used
+        {
+            if (!isLeftStickTheFootStick) // if right stick is for moving
+                TranslateByDelta(context);
+            else
+                GetComponent<MassMovement>().Set_direction(context.ReadValue<Vector2>());
+        }
     }
     #endregion
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FootController : MonoBehaviour
 {
@@ -45,15 +46,17 @@ public class FootController : MonoBehaviour
     public void PickUpLeftFoot()
     {
         activeFoot = judoka.leftFoot;
-        activeFoot.Set_isLifted(true);
-        activeFoot.Set_isReaping(instantlyTryingToReap);
-        activeFoot.Get_otherFoot().Set_isLifted(false);
-        moveTargetDirection = Vector3.zero;
+        PickUpFoot();
     }
 
     public void PickUpRightFoot()
     {
         activeFoot = judoka.rightFoot;
+        PickUpFoot();
+    }
+
+    void PickUpFoot()
+    {
         activeFoot.Set_isLifted(true);
         activeFoot.Set_isReaping(instantlyTryingToReap);
         activeFoot.Get_otherFoot().Set_isLifted(false);
