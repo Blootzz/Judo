@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         Time.timeScale = 1; // reset from last game over;
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Multiplayer test");
     }
     public void PlayTutorial()
     {

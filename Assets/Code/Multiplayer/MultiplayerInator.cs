@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class MultiplayerInator : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MultiplayerInator : MonoBehaviour
     [SerializeField] Transform P2SpawnCircle;
     [SerializeField] GameObject p1Panel;
     [SerializeField] GameObject p2Panel;
+    short numPlayers = 0;
+    [SerializeField] [Range(1,5)] short MAX_NUMPLAYERS = 2;
 
     // flags
     bool hasP1PressedStart = false;
@@ -61,5 +64,14 @@ public class MultiplayerInator : MonoBehaviour
             pNum = 2;
             spawnPos = P2SpawnCircle.position;
         }
+    }
+
+    // prevent using PlayerInputManager's default player cap
+    // event called by PlayerInputManager Player Joined Event
+    public void IncrementPlayerCount()
+    {
+        numPlayers++;
+        if (numPlayers >= MAX_NUMPLAYERS)
+            GetComponent<PlayerInputManager>().DisableJoining();
     }
 }

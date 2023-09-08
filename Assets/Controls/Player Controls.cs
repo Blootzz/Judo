@@ -71,6 +71,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""7aae19a8-27da-4df9-bc65-c1a793115a79"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -280,6 +289,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Reap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aded4ec6-4a55-4db2-92d7-5d034e8bf9c9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cdd95b3-9306-41d7-982a-2d4d7ebfc1d4"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -849,6 +880,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d6f5086-341f-44af-9c50-107b21472f6e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1060,6 +1100,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Move Right Stick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2cbad7ac-90ff-4fae-927e-6f73d8c1a127"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26359f64-652b-4dbc-9565-5fc0b3110762"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1134,6 +1196,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_LiftLeftFoot = m_Player.FindAction("Lift Left Foot", throwIfNotFound: true);
         m_Player_LiftRightFoot = m_Player.FindAction("Lift Right Foot", throwIfNotFound: true);
         m_Player_Reap = m_Player.FindAction("Reap", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1153,6 +1216,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Controller2_LiftRightFoot = m_Controller2.FindAction("Lift Right Foot", throwIfNotFound: true);
         m_Controller2_LiftLeftFoot = m_Controller2.FindAction("Lift Left Foot", throwIfNotFound: true);
         m_Controller2_Reap = m_Controller2.FindAction("Reap", throwIfNotFound: true);
+        m_Controller2_Pause = m_Controller2.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1217,6 +1281,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LiftLeftFoot;
     private readonly InputAction m_Player_LiftRightFoot;
     private readonly InputAction m_Player_Reap;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1226,6 +1291,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @LiftLeftFoot => m_Wrapper.m_Player_LiftLeftFoot;
         public InputAction @LiftRightFoot => m_Wrapper.m_Player_LiftRightFoot;
         public InputAction @Reap => m_Wrapper.m_Player_Reap;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1250,6 +1316,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Reap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReap;
                 @Reap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReap;
                 @Reap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReap;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1269,6 +1338,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Reap.started += instance.OnReap;
                 @Reap.performed += instance.OnReap;
                 @Reap.canceled += instance.OnReap;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1387,6 +1459,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controller2_LiftRightFoot;
     private readonly InputAction m_Controller2_LiftLeftFoot;
     private readonly InputAction m_Controller2_Reap;
+    private readonly InputAction m_Controller2_Pause;
     public struct Controller2Actions
     {
         private @PlayerControls m_Wrapper;
@@ -1396,6 +1469,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @LiftRightFoot => m_Wrapper.m_Controller2_LiftRightFoot;
         public InputAction @LiftLeftFoot => m_Wrapper.m_Controller2_LiftLeftFoot;
         public InputAction @Reap => m_Wrapper.m_Controller2_Reap;
+        public InputAction @Pause => m_Wrapper.m_Controller2_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Controller2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1420,6 +1494,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Reap.started -= m_Wrapper.m_Controller2ActionsCallbackInterface.OnReap;
                 @Reap.performed -= m_Wrapper.m_Controller2ActionsCallbackInterface.OnReap;
                 @Reap.canceled -= m_Wrapper.m_Controller2ActionsCallbackInterface.OnReap;
+                @Pause.started -= m_Wrapper.m_Controller2ActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_Controller2ActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_Controller2ActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_Controller2ActionsCallbackInterface = instance;
             if (instance != null)
@@ -1439,6 +1516,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Reap.started += instance.OnReap;
                 @Reap.performed += instance.OnReap;
                 @Reap.canceled += instance.OnReap;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1495,6 +1575,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLiftLeftFoot(InputAction.CallbackContext context);
         void OnLiftRightFoot(InputAction.CallbackContext context);
         void OnReap(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1516,5 +1597,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLiftRightFoot(InputAction.CallbackContext context);
         void OnLiftLeftFoot(InputAction.CallbackContext context);
         void OnReap(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

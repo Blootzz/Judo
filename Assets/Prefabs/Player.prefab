@@ -131,6 +131,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8790988515709763940, guid: 65d50f34dad590e4289a855d96650552, type: 3}
   m_PrefabInstance: {fileID: 6984243465045099107}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5403008304708929264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806745093633213191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c45d18ee80bdf4439b764a2e78eb651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &772102366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +368,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6feaaeef-f80b-4790-ae26-00358a0909af
     m_ActionName: Controller2/Reap[/Keyboard/shift,/XInputControllerWindows/leftShoulder,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5403008304708929264}
+        m_TargetAssemblyTypeName: PauseAbility, Pause
+        m_MethodName: TogglePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7aae19a8-27da-4df9-bc65-c1a793115a79
+    m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5403008304708929264}
+        m_TargetAssemblyTypeName: PauseAbility, Pause
+        m_MethodName: TogglePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6d6f5086-341f-44af-9c50-107b21472f6e
+    m_ActionName: Controller2/Pause[/Keyboard/escape,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

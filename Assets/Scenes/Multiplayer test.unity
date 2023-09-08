@@ -649,7 +649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: 2
+  m_MaxPlayerCount: -1
   m_AllowJoining: 1
   m_JoinBehavior: 1
   m_PlayerJoinedEvent:
@@ -750,6 +750,7 @@ MonoBehaviour:
   P2SpawnCircle: {fileID: 323807110}
   p1Panel: {fileID: 263095298}
   p2Panel: {fileID: 1985832942}
+  MAX_NUMPLAYERS: 2
 --- !u!1 &1073675998
 GameObject:
   m_ObjectHideFlags: 0
