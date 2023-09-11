@@ -805,10 +805,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1904983882}
     m_Modifications:
+    - target: {fileID: 5871885315649409769, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885315649409769, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5871885315836452450, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 305000296}
+    - target: {fileID: 5871885315994871588, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885315994871588, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885316317977698, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885316317977698, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885316317977698, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5871885317216228489, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -896,6 +924,38 @@ PrefabInstance:
     - target: {fileID: 5871885317216228490, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
       propertyPath: m_Name
       value: Options Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885317399903731, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885317399903731, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885317399903731, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885317637303338, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885317637303338, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885317711451155, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885317711451155, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871885317711451155, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9ec89c60cd77504eba40ec57f22db78, type: 3}
@@ -1344,7 +1404,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.24705882, g: 0.41568628, b: 0.7647059, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1478,7 +1538,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.24705882, g: 0.41568628, b: 0.7647059, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1572,6 +1632,7 @@ GameObject:
   - component: {fileID: 1494952021}
   - component: {fileID: 1494952020}
   - component: {fileID: 1494952019}
+  - component: {fileID: 1494952022}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -1624,7 +1685,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.24870951, g: 0.4143769, b: 0.764151, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1694,6 +1755,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494952017}
   m_CullTransparentMesh: 1
+--- !u!114 &1494952022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494952017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6d9f24c5dda904b8513fb872280a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1723634032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,7 +1797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1494952017}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1723634035
