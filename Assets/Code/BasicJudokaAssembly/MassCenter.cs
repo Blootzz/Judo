@@ -113,11 +113,14 @@ public class MassCenter : MonoBehaviour
 
     void EvaluateIppon()
     {
+        if (Time.timeScale == 0) // don't run if game is paused
+            return;
+
         if (Vector2.Distance(transform.position, myIpponCirlce.transform.position) >= myIpponCirlce.Get_Diameter() / 2)
         {
             Debug.LogWarning("Ippon! " + transform.parent.name);
             Time.timeScale = 0;
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Game Over", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Ippon", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         }
     }
 

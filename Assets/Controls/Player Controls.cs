@@ -1093,24 +1093,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Lift Right Foot"",
-                    ""type"": ""Button"",
-                    ""id"": ""c424cf69-a2a7-4120-ac42-2534fca9c6d4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Lift Left Foot"",
-                    ""type"": ""Button"",
-                    ""id"": ""9347e33d-be40-4563-92d9-27587503ad23"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Reap"",
                     ""type"": ""PassThrough"",
                     ""id"": ""d103d029-da05-4c0b-bc45-badee38bc8f2"",
@@ -1165,23 +1147,23 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6ff66cac-140b-4365-a643-c15f86127a46"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""7540b6a1-3aeb-44e3-a714-f77b997d1b9c"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Lift Right Foot"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Reap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""29e6ebf2-153e-4fdf-a2c0-c7cc4c0260f9"",
+                    ""id"": ""2828ccd6-c678-4582-ac8f-eeaef50b7c45"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Lift Right Foot"",
+                    ""action"": ""Reap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1303,28 +1285,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Move Right Stick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a51d4970-88e6-4b4d-b8d9-24a3a172109e"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Lift Left Foot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8f921266-ac61-4354-8224-2b86aea0dda7"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Lift Left Foot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1459,8 +1419,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Controller3 = asset.FindActionMap("Controller3", throwIfNotFound: true);
         m_Controller3_MoveRightStick = m_Controller3.FindAction("Move Right Stick", throwIfNotFound: true);
         m_Controller3_MoveLeftStick = m_Controller3.FindAction("Move Left Stick", throwIfNotFound: true);
-        m_Controller3_LiftRightFoot = m_Controller3.FindAction("Lift Right Foot", throwIfNotFound: true);
-        m_Controller3_LiftLeftFoot = m_Controller3.FindAction("Lift Left Foot", throwIfNotFound: true);
         m_Controller3_Reap = m_Controller3.FindAction("Reap", throwIfNotFound: true);
         m_Controller3_Pause = m_Controller3.FindAction("Pause", throwIfNotFound: true);
     }
@@ -1775,8 +1733,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IController3Actions m_Controller3ActionsCallbackInterface;
     private readonly InputAction m_Controller3_MoveRightStick;
     private readonly InputAction m_Controller3_MoveLeftStick;
-    private readonly InputAction m_Controller3_LiftRightFoot;
-    private readonly InputAction m_Controller3_LiftLeftFoot;
     private readonly InputAction m_Controller3_Reap;
     private readonly InputAction m_Controller3_Pause;
     public struct Controller3Actions
@@ -1785,8 +1741,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public Controller3Actions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveRightStick => m_Wrapper.m_Controller3_MoveRightStick;
         public InputAction @MoveLeftStick => m_Wrapper.m_Controller3_MoveLeftStick;
-        public InputAction @LiftRightFoot => m_Wrapper.m_Controller3_LiftRightFoot;
-        public InputAction @LiftLeftFoot => m_Wrapper.m_Controller3_LiftLeftFoot;
         public InputAction @Reap => m_Wrapper.m_Controller3_Reap;
         public InputAction @Pause => m_Wrapper.m_Controller3_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Controller3; }
@@ -1804,12 +1758,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MoveLeftStick.started -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnMoveLeftStick;
                 @MoveLeftStick.performed -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnMoveLeftStick;
                 @MoveLeftStick.canceled -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnMoveLeftStick;
-                @LiftRightFoot.started -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnLiftRightFoot;
-                @LiftRightFoot.performed -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnLiftRightFoot;
-                @LiftRightFoot.canceled -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnLiftRightFoot;
-                @LiftLeftFoot.started -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnLiftLeftFoot;
-                @LiftLeftFoot.performed -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnLiftLeftFoot;
-                @LiftLeftFoot.canceled -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnLiftLeftFoot;
                 @Reap.started -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnReap;
                 @Reap.performed -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnReap;
                 @Reap.canceled -= m_Wrapper.m_Controller3ActionsCallbackInterface.OnReap;
@@ -1826,12 +1774,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MoveLeftStick.started += instance.OnMoveLeftStick;
                 @MoveLeftStick.performed += instance.OnMoveLeftStick;
                 @MoveLeftStick.canceled += instance.OnMoveLeftStick;
-                @LiftRightFoot.started += instance.OnLiftRightFoot;
-                @LiftRightFoot.performed += instance.OnLiftRightFoot;
-                @LiftRightFoot.canceled += instance.OnLiftRightFoot;
-                @LiftLeftFoot.started += instance.OnLiftLeftFoot;
-                @LiftLeftFoot.performed += instance.OnLiftLeftFoot;
-                @LiftLeftFoot.canceled += instance.OnLiftLeftFoot;
                 @Reap.started += instance.OnReap;
                 @Reap.performed += instance.OnReap;
                 @Reap.canceled += instance.OnReap;
@@ -1922,8 +1864,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMoveRightStick(InputAction.CallbackContext context);
         void OnMoveLeftStick(InputAction.CallbackContext context);
-        void OnLiftRightFoot(InputAction.CallbackContext context);
-        void OnLiftLeftFoot(InputAction.CallbackContext context);
         void OnReap(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }

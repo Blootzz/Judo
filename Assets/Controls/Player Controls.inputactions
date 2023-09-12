@@ -1071,24 +1071,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Lift Right Foot",
-                    "type": "Button",
-                    "id": "c424cf69-a2a7-4120-ac42-2534fca9c6d4",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Lift Left Foot",
-                    "type": "Button",
-                    "id": "9347e33d-be40-4563-92d9-27587503ad23",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Reap",
                     "type": "PassThrough",
                     "id": "d103d029-da05-4c0b-bc45-badee38bc8f2",
@@ -1143,23 +1125,23 @@
                 },
                 {
                     "name": "",
-                    "id": "6ff66cac-140b-4365-a643-c15f86127a46",
-                    "path": "<Mouse>/rightButton",
+                    "id": "7540b6a1-3aeb-44e3-a714-f77b997d1b9c",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Lift Right Foot",
+                    "groups": "Gamepad",
+                    "action": "Reap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "29e6ebf2-153e-4fdf-a2c0-c7cc4c0260f9",
+                    "id": "2828ccd6-c678-4582-ac8f-eeaef50b7c45",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Lift Right Foot",
+                    "action": "Reap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1281,28 +1263,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Move Right Stick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a51d4970-88e6-4b4d-b8d9-24a3a172109e",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Lift Left Foot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8f921266-ac61-4354-8224-2b86aea0dda7",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Lift Left Foot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

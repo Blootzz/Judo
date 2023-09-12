@@ -84,6 +84,10 @@ class JudokaEditor : Editor
         {
             judoka.GetComponent<PlayerInput>().SwitchCurrentActionMap("Controller2");
         }
+        if (GUILayout.Button("Symmetric Sticks Free"))
+        {
+            judoka.GetComponent<PlayerInput>().SwitchCurrentActionMap("Controller3");
+        }
         EditorGUILayout.EndHorizontal();
 
         DrawDefaultInspector();

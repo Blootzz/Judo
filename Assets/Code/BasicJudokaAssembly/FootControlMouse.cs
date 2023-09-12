@@ -14,6 +14,8 @@ public class FootControlMouse : MonoBehaviour
 
     // for Controller2 action map
     bool isLeftStickTheFootStick = true;
+    float leftStickMagnitude = 0;
+    float rightStickMagnitude = 0;
 
     [SerializeField] bool HIDE_MOUSE = false;
 
@@ -106,6 +108,11 @@ public class FootControlMouse : MonoBehaviour
     {
         if (context.action.name.Equals("Move Left Stick")) // if left stick is being used
         {
+            // Symmetric sticks - don't do anything if this stick value is less than other stick
+            leftStickMagnitude = context.ReadValue<Vector2>().magnitude;
+            if (leftStickMagnitude < rightStickMagnitude)
+                return;
+
             if (isLeftStickTheFootStick)
                 TranslateByDelta(context);
             else
@@ -113,11 +120,43 @@ public class FootControlMouse : MonoBehaviour
         }
         else // if right stick is being used
         {
+            // Symmetric sticks - don't do anything if this stick value is less than other stick
+            rightStickMagnitude = context.ReadValue<Vector2>().magnitude;
+            if (rightStickMagnitude < leftStickMagnitude)
+                return;
+
             if (!isLeftStickTheFootStick) // if right stick is for moving
                 TranslateByDelta(context);
             else
                 GetComponent<MassMovement>().Set_direction(context.ReadValue<Vector2>());
         }
+    }
+    #endregion
+
+    #region Controller3 Controls
+    public void PickUpLeft2(InputAction.CallbackContext context)
+    {
+        if (context.ReadValue<Vector2>() != Vector2.zero)
+        {
+            footController.PickUpLeftFoot();
+            // for Controller2 input map
+            if (GetComponent<PlayerInput>().currentActionMap.name.Equals("Controller3"))
+                isLeftStickTheFootStick = true;
+        }
+        else
+            footController.LowerLeftFoot();
+    }
+    public void PickUpRight2(InputAction.CallbackContext context)
+    {
+        if (context.ReadValue<Vector2>() != Vector2.zero)
+        {
+            footController.PickUpRightFoot();
+            // for Controller2 input map
+            if (GetComponent<PlayerInput>().currentActionMap.name.Equals("Controller3"))
+                isLeftStickTheFootStick = false;
+        }
+        else
+            footController.LowerRightFoot();
     }
     #endregion
 
