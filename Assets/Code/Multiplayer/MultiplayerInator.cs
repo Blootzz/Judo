@@ -13,6 +13,7 @@ public class MultiplayerInator : MonoBehaviour
     [SerializeField] GameObject p2Panel;
     short numPlayers = 0;
     [SerializeField] [Range(1,5)] short MAX_NUMPLAYERS = 2;
+    [SerializeField] GameObject roundText;
 
     // flags
     bool hasP1PressedStart = false;
@@ -76,7 +77,10 @@ public class MultiplayerInator : MonoBehaviour
     {
         numPlayers++;
         if (numPlayers >= MAX_NUMPLAYERS)
+        {
             GetComponent<PlayerInputManager>().DisableJoining();
+            roundText.SetActive(true);
+        }
     }
 
     public void Hajime() // called in UI animation
