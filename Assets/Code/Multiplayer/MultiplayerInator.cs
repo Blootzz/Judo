@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
 
 public class MultiplayerInator : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class MultiplayerInator : MonoBehaviour
     // flags
     bool hasP1PressedStart = false;
     bool hasP1SpawnBeenAssigned = false;
+
+    // Event for allowing players to gain control
+    public event EventHandler hajimeEvent;
 
     void Start()
     {
@@ -73,5 +77,11 @@ public class MultiplayerInator : MonoBehaviour
         numPlayers++;
         if (numPlayers >= MAX_NUMPLAYERS)
             GetComponent<PlayerInputManager>().DisableJoining();
+    }
+
+    public void Hajime() // called in UI animation
+    {
+        // ?.Invoke checks if null before calling event
+        hajimeEvent?.Invoke(this, EventArgs.Empty); // event subscribed to in WaitForHajime.cs
     }
 }
