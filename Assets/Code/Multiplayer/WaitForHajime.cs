@@ -11,7 +11,7 @@ public class WaitForHajime : MonoBehaviour
     void Start()
     {
         // Don't get permission to play until MultiplayerInator.Hajime()
-        GetComponent<PlayerInput>().enabled = false;
+        GetComponent<PlayerInput>().DeactivateInput();
 
         multiplayerInator = FindObjectOfType<MultiplayerInator>();
         multiplayerInator.hajimeEvent += ActivateControls;
@@ -19,6 +19,6 @@ public class WaitForHajime : MonoBehaviour
 
     void ActivateControls(object sender, EventArgs e)
     {
-        GetComponent<PlayerInput>().enabled = true;
+        GetComponent<PlayerInput>().ActivateInput();
     }
 }

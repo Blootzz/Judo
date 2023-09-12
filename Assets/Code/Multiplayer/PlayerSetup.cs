@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
 {
@@ -13,6 +14,7 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
         GetPlayerInfoFromMultiplayerInator();
         SetSpawnPosAndLayers();
         AssignColor();
+        AssignControls();
     }
 
     void GetPlayerInfoFromMultiplayerInator()
@@ -46,5 +48,12 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
         GetComponentInChildren<MassCenter>().gameObject.GetComponent<SpriteRenderer>().color = myPalette[2];
         GetComponent<Judoka>().leftFoot.gameObject.GetComponent<SpriteRenderer>().color = myPalette[3];
         GetComponent<Judoka>().rightFoot.gameObject.GetComponent<SpriteRenderer>().color = myPalette[4];
+    }
+
+    void AssignControls()
+    {
+        PlayerInput PI = GetComponent<PlayerInput>();
+        if (PI.GetDevice<InputDevice>().displayName[0] == 'G' || PI.GetDevice<InputDevice>().displayName[0] == 'X')
+            PI.SwitchCurrentActionMap(GameMaster.instance.Get_preferredControllerActionMapName());
     }
 }
