@@ -59,6 +59,14 @@ public class GameMaster : MonoBehaviour
         score[1]++;
         CheckVictory();
     }
+    public short Get_P1Score()
+    {
+        return score[0];
+    }
+    public short Get_P2Score()
+    {
+        return score[1];
+    }
 
     #endregion
 }

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
 {
-    short playerNum = 0;
+    short playerNum = 0; // either 1 or 2
     Vector2 playerPos;
     [SerializeField] GameObject ColorPrefab;
 
@@ -15,6 +16,7 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
         SetSpawnPosAndLayers();
         AssignColor();
         AssignControls();
+        GetComponentInChildren<MassCenter>().iJustGotIppowned += GivePointToOtherPlayer;
     }
 
     void GetPlayerInfoFromMultiplayerInator()
@@ -55,5 +57,21 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
         PlayerInput PI = GetComponent<PlayerInput>();
         if (PI.GetDevice<InputDevice>().displayName[0] == 'G' || PI.GetDevice<InputDevice>().displayName[0] == 'X')
             PI.SwitchCurrentActionMap(GameMaster.instance.Get_preferredControllerActionMapName());
+    }
+
+    void GivePointToOtherPlayer(object sender, EventArgs e)
+    {
+        switch(playerNum)
+        {
+            case 1:
+                GameMaster.instance.PointP2();
+                break;
+            case 2:
+                GameMaster.instance.PointP1();
+                break;
+            default:
+                Debug.LogWarning("Not sure who to give point based off playerNum");
+                break;
+        }
     }
 }

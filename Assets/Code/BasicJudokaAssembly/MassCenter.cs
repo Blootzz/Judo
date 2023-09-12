@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MassCenter : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class MassCenter : MonoBehaviour
     float distanceToRightFoot;
     Vector2 posInfluenceSumOneFrame = new Vector2(0, 0);
     public float TOTAL_SPEED_MULTIPLIER = 1;
+
+    public EventHandler iJustGotIppowned;
 
     // variables for detecting proximity to FeetCenterline
     Vector2 centerLineSlope;
@@ -119,6 +122,8 @@ public class MassCenter : MonoBehaviour
         if (Vector2.Distance(transform.position, myIpponCirlce.transform.position) >= myIpponCirlce.Get_Diameter() / 2)
         {
             Debug.LogWarning("Ippon! " + transform.parent.name);
+            iJustGotIppowned.Invoke(this, EventArgs.Empty); // listened to by PlayerSetup.cs
+            
             Time.timeScale = 0;
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Ippon", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         }
