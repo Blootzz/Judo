@@ -19,7 +19,11 @@ public class RoundText : MonoBehaviour
     public void _Hajime() // called from UI animation
     {
         multiplayerInator.Hajime();
+
+        // kick off and on to call OnEnable()
+        brush.SetActive(false);
         brush.SetActive(true);
+        hajimeText.SetActive(false);
         hajimeText.SetActive(true);
     }
 }

@@ -14,6 +14,8 @@ public class MultiplayerInator : MonoBehaviour
     short numPlayers = 0;
     [SerializeField] [Range(1,5)] short MAX_NUMPLAYERS = 2;
     [SerializeField] GameObject roundText;
+    GameObject player1;
+    GameObject player2;
 
     // flags
     bool hasP1PressedStart = false;
@@ -55,16 +57,18 @@ public class MultiplayerInator : MonoBehaviour
         }
     }
 
-    public void SetupPlayer(out short pNum, out Vector2 spawnPos)
+    public void SetupPlayer(GameObject player, out short pNum, out Vector2 spawnPos)
     {
         if (!hasP1SpawnBeenAssigned)
         {
+            player1 = player;
             hasP1SpawnBeenAssigned = true;
             pNum = 1;
             spawnPos = P1SpawnCircle.position;
         }
         else
         {
+            player2 = player;
             hasP1SpawnBeenAssigned = false; // in case this class needs to be used again
             pNum = 2;
             spawnPos = P2SpawnCircle.position;
@@ -83,9 +87,23 @@ public class MultiplayerInator : MonoBehaviour
         }
     }
 
-    public void Hajime() // called in UI animation
+    public void Hajime() // called in _Hajime() in RoundText.cs
     {
         // ?.Invoke checks if null before calling event
         hajimeEvent?.Invoke(this, EventArgs.Empty); // event subscribed to in WaitForHajime.cs
+    }
+
+    public void StartNewRound()
+    {
+        player1.GetComponent<PlayerSetup>().ResetPosition();
+        player2.GetComponent<PlayerSetup>().ResetPosition();
+        player1.GetComponent<WaitForHajime>().Start();
+        player2.GetComponent<WaitForHajime>().Start();
+
+        // kick off and on to call OnEnable
+        roundText.SetActive(false);
+        roundText.SetActive(true);
+
+        Time.timeScale = 1;
     }
 }

@@ -7,13 +7,14 @@ using System;
 public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
 {
     short playerNum = 0; // either 1 or 2
-    Vector2 playerPos;
+    Vector2 playerSpawnPos;
     [SerializeField] GameObject ColorPrefab;
 
     void OnEnable()
     {
         GetPlayerInfoFromMultiplayerInator();
-        SetSpawnPosAndLayers();
+        ResetPosition();
+        SetLayers();
         AssignColor();
         AssignControls();
         GetComponentInChildren<MassCenter>().iJustGotIppowned += GivePointToOtherPlayer;
@@ -22,13 +23,12 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
     void GetPlayerInfoFromMultiplayerInator()
     {
         // gets playerNum and playerPos
-        FindObjectOfType<MultiplayerInator>().SetupPlayer(out playerNum, out playerPos);
+        FindObjectOfType<MultiplayerInator>().SetupPlayer(this.gameObject, out playerNum, out playerSpawnPos);
     }
 
-    void SetSpawnPosAndLayers()
+    void SetLayers()
     {
         gameObject.name = "Player" + playerNum.ToString(); // rename object
-        transform.position = playerPos; // set position
 
         #region Set layers of game object and every nested child
 
@@ -73,5 +73,13 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
                 Debug.LogWarning("Not sure who to give point based off playerNum");
                 break;
         }
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = playerSpawnPos;
+        GetComponentInChildren<MassCenter>().transform.position = playerSpawnPos;
+        GetComponentInChildren<FeetCenterline>().transform.GetChild(0).transform.position = playerSpawnPos - new Vector2(-1, 0); // left foot
+        GetComponentInChildren<FeetCenterline>().transform.GetChild(1).transform.position = playerSpawnPos - new Vector2(1, 0); // right foot
     }
 }

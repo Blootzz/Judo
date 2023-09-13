@@ -9,4 +9,10 @@ public class ScoreText : MonoBehaviour
     {
         GetComponent<TextMeshProUGUI>().text = GameMaster.instance.Get_P1Score() + " - " + GameMaster.instance.Get_P2Score();
     }
+
+    public void _FinishIpponScreen()
+    {
+        FindObjectOfType<MultiplayerInator>().StartNewRound();
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Ippon");
+    }
 }
