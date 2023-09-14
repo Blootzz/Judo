@@ -79,6 +79,7 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
     {
         transform.position = playerSpawnPos;
         GetComponentInChildren<MassCenter>().transform.position = playerSpawnPos;
+        GetComponentInChildren<CenterOfBalance>().transform.position = playerSpawnPos;
         GetComponentInChildren<FeetCenterline>().transform.GetChild(0).transform.position = playerSpawnPos - new Vector2(-1, 0); // left foot
         GetComponentInChildren<FeetCenterline>().transform.GetChild(1).transform.position = playerSpawnPos - new Vector2(1, 0); // right foot
     }
