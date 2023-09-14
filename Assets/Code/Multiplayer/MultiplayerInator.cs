@@ -83,8 +83,15 @@ public class MultiplayerInator : MonoBehaviour
         if (numPlayers >= MAX_NUMPLAYERS)
         {
             GetComponent<PlayerInputManager>().DisableJoining();
-            roundText.SetActive(true);
+            RoundAndHajimeUI();
         }
+    }
+
+    void RoundAndHajimeUI()
+    {
+        // kick off and on to call OnEnable
+        roundText.SetActive(false);
+        roundText.SetActive(true);
     }
 
     public void Hajime() // called in _Hajime() in RoundText.cs
@@ -100,9 +107,7 @@ public class MultiplayerInator : MonoBehaviour
         player1.GetComponent<WaitForHajime>().Start();
         player2.GetComponent<WaitForHajime>().Start();
 
-        // kick off and on to call OnEnable
-        roundText.SetActive(false);
-        roundText.SetActive(true);
+        RoundAndHajimeUI();
 
         Time.timeScale = 1;
     }

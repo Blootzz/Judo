@@ -8,7 +8,7 @@ public class Colors : MonoBehaviour
     /// Order:
     /// 1- Center of balance
     /// 2- Ippon Circle
-    /// 3- Mass Center
+    /// 3- Mass Center / Outline
     /// 4- Left Foot
     /// 5- Right Foot
     /// </summary>
