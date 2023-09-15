@@ -7,12 +7,13 @@ public class GameMaster : MonoBehaviour
     public static GameMaster instance { get; private set; }
 
     [SerializeField] short roundNum = 0;
-    [SerializeField] string preferredControllerMapName = "Controller3";
+    [SerializeField] string preferredControllerMapName = "Controller4";
     [SerializeField] short scoreToWin = 3;
     [SerializeField] short[] score = new short[2];
 
     void Awake()
     {
+        DontDestroyOnLoad(this);
         if (instance != null & instance != this) // you should kill Yourself... NOW
             Destroy(this);
         else

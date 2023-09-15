@@ -48,14 +48,11 @@ public class FootControlMouse : MonoBehaviour
             Debug.LogWarning("Trying to follow non-existant cursor");
     }
 
-    // Events
-    #region Events for controls
-    public void TranslateByDelta(InputAction.CallbackContext context)
+    void MoveFoot(Vector2 value, char deviceName)
     {
         if (!followCursorInsteadOfDelta)
         {
-            char controllerInitial = context.control.device.name[0];
-            switch(controllerInitial)
+            switch (deviceName)
             {
                 case 'M':
                     sensitivity = MOUSE_SENSITIVITY;
@@ -70,8 +67,15 @@ public class FootControlMouse : MonoBehaviour
                     Debug.LogWarning("No input device option found for moving");
                     break;
             }
-            footController.Set_moveTarget(context.ReadValue<Vector2>() * sensitivity, false); // false means input will be treated as direction
+            footController.Set_moveTarget(value * sensitivity, false); // false means input will be treated as direction
         }
+    }
+
+    // Events
+    #region Events for controls
+    public void TranslateByDelta(InputAction.CallbackContext context)
+    {
+        MoveFoot(context.ReadValue<Vector2>(), context.control.device.name[0]);
     }
     public void PickUpLeft(InputAction.CallbackContext context)
     {
@@ -114,7 +118,7 @@ public class FootControlMouse : MonoBehaviour
                 return;
 
             if (isLeftStickTheFootStick)
-                TranslateByDelta(context);
+                MoveFoot(context.ReadValue<Vector2>(), context.control.device.name[0]);
             else
                 GetComponent<MassMovement>().Set_direction(context.ReadValue<Vector2>());
         }
@@ -126,7 +130,7 @@ public class FootControlMouse : MonoBehaviour
                 return;
 
             if (!isLeftStickTheFootStick) // if right stick is for moving
-                TranslateByDelta(context);
+                MoveFoot(context.ReadValue<Vector2>(), context.control.device.name[0]);
             else
                 GetComponent<MassMovement>().Set_direction(context.ReadValue<Vector2>());
         }
@@ -140,7 +144,7 @@ public class FootControlMouse : MonoBehaviour
         {
             footController.PickUpLeftFoot();
             // for Controller2 input map
-            if (GetComponent<PlayerInput>().currentActionMap.name.Equals("Controller3"))
+            if (GetComponent<PlayerInput>().currentActionMap.name.Equals("Controller3") || GetComponent<PlayerInput>().currentActionMap.name.Equals("Controller4"))
                 isLeftStickTheFootStick = true;
         }
         else
@@ -152,12 +156,39 @@ public class FootControlMouse : MonoBehaviour
         {
             footController.PickUpRightFoot();
             // for Controller2 input map
-            if (GetComponent<PlayerInput>().currentActionMap.name.Equals("Controller3"))
+            if (GetComponent<PlayerInput>().currentActionMap.name.Equals("Controller3") || GetComponent<PlayerInput>().currentActionMap.name.Equals("Controller4"))
                 isLeftStickTheFootStick = false;
         }
         else
             footController.LowerRightFoot();
     }
+    #endregion
+
+    #region Controller Map 4 - Symmetric sticks + mass moved by shoulder buttons
+    public void MoveEitherStick4(InputAction.CallbackContext context)
+    {
+        if (context.action.name.Equals("Move Left Stick")) // if left stick is being used
+        {
+            // Symmetric sticks - don't do anything if this stick value is less than other stick
+            leftStickMagnitude = context.ReadValue<Vector2>().magnitude;
+            if (leftStickMagnitude < rightStickMagnitude)
+                return;
+
+            if (isLeftStickTheFootStick)
+                MoveFoot(context.ReadValue<Vector2>(), context.control.device.name[0]);
+        }
+        else // if right stick is being used
+        {
+            // Symmetric sticks - don't do anything if this stick value is less than other stick
+            rightStickMagnitude = context.ReadValue<Vector2>().magnitude;
+            if (rightStickMagnitude < leftStickMagnitude)
+                return;
+
+            if (!isLeftStickTheFootStick) // if right stick is for moving
+                MoveFoot(context.ReadValue<Vector2>(), context.control.device.name[0]);
+        }
+    }
+
     #endregion
 
     //footController.ReapOnOrOff(Input.GetKey(KeyCode.LeftShift));

@@ -27,7 +27,9 @@ public class Judoka : MonoBehaviour
     [Header("")]
     public bool isEngagedWithOpponent = false;
 
-    [HideInInspector] public MassCenter opponentMass;
+    public MassCenter opponentMass;
+
+    public GameObject opponent; // set in MultiplayerInator.SetupPlayer()
 
     // Needs to be called before Start() so that FeetCenterline.Start can use these references
     void Awake()
@@ -87,6 +89,10 @@ class JudokaEditor : Editor
         if (GUILayout.Button("Symmetric Sticks Free"))
         {
             judoka.GetComponent<PlayerInput>().SwitchCurrentActionMap("Controller3");
+        }
+        if (GUILayout.Button("Symmetric Sticks + Mass"))
+        {
+            judoka.GetComponent<PlayerInput>().SwitchCurrentActionMap("Controller4");
         }
         EditorGUILayout.EndHorizontal();
 

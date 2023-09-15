@@ -69,6 +69,8 @@ public class MultiplayerInator : MonoBehaviour
         else
         {
             player2 = player;
+            player1.GetComponent<Judoka>().opponent = player2;
+            player2.GetComponent<Judoka>().opponent = player1;
             hasP1SpawnBeenAssigned = false; // in case this class needs to be used again
             pNum = 2;
             spawnPos = P2SpawnCircle.position;

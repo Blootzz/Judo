@@ -9,7 +9,6 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
     short playerNum = 0; // either 1 or 2
     Vector2 playerSpawnPos;
     [SerializeField] GameObject ColorPrefab;
-    MultiplayerInator multiplayerInator;
 
     void OnEnable()
     {
