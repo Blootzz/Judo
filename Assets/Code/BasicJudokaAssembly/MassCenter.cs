@@ -14,6 +14,10 @@ public class MassCenter : MonoBehaviour
 
     public EventHandler iJustGotIppowned;
 
+    // listened to by OutlineFlashMass.cs
+    public EventHandler inDanger;
+    public EventHandler noLongerInDanger;
+
     // variables for detecting proximity to FeetCenterline
     Vector2 centerLineSlope;
     Vector2 raycastDirection;
@@ -135,11 +139,13 @@ public class MassCenter : MonoBehaviour
         {
             //print("CENTERLINE <== pull");
             AddInfluenceToPosition(parentJudoka.Get_CENTERLINE_PULL_STRENGTH() * (targetPosition - transform.position));
+            noLongerInDanger?.Invoke(this, EventArgs.Empty);
         }
         else
         {
             //print("CENTERLINE push ==>");
             AddInfluenceToPosition(parentJudoka.Get_CENTERLINE_PUSH_STRENGTH() * (transform.position - targetPosition));
+            inDanger?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -149,11 +155,13 @@ public class MassCenter : MonoBehaviour
         {
             //print("FOOT <== pull");
             AddInfluenceToPosition(parentJudoka.Get_CENTERLINE_PULL_STRENGTH() * (closestFootPos - new Vector2(transform.position.x, transform.position.y)));
+            noLongerInDanger?.Invoke(this, EventArgs.Empty);
         }
         else
         {
             //print("FOOT push ==>");
             AddInfluenceToPosition(parentJudoka.Get_CENTERLINE_PUSH_STRENGTH() * (new Vector2(transform.position.x, transform.position.y) - closestFootPos));
+            inDanger?.Invoke(this, EventArgs.Empty);
         }
     }
 

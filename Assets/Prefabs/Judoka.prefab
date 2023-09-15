@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4562038867609955744}
   - component: {fileID: 3575330678259445772}
+  - component: {fileID: 5462758693287782053}
   m_Layer: 7
   m_Name: Outline
   m_TagString: Untagged
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!114 &5462758693287782053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314089500519654580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a7df657838e444aa5f713a1886e77d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  massCenter: {fileID: 8790988514896273663}
+  blinkTime: 0.2
+  extraDangerThreshold: 0.6
+  lowDangerColor:
+    serializedVersion: 2
+    rgba: 4281898464
+  highDangerColor:
+    serializedVersion: 2
+    rgba: 4282401023
 --- !u!1 &8790988513783640117
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +563,7 @@ MonoBehaviour:
   rightFoot: {fileID: 8163480794125548688}
   isEngagedWithOpponent: 0
   opponentMass: {fileID: 0}
+  opponent: {fileID: 0}
 --- !u!114 &-4136247932738429118
 MonoBehaviour:
   m_ObjectHideFlags: 0
