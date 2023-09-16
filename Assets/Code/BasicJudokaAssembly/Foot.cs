@@ -140,11 +140,13 @@ public class Foot : MonoBehaviour
         isReaping = toReapOrNotToReap;
         if (isReaping)
         {
+            GetComponentInChildren<WhiteFootTrail>().SetTrailReap(isReaping);
             GetComponent<SpriteRenderer>().sprite = reapingFootSprite;
             //judoka.GetComponentInChildren<MassCenter>().AddInfluenceToPosition(judoka.REAPING_FOOT_STRENGTH * )
         }
         else
         {
+            GetComponentInChildren<WhiteFootTrail>().SetTrailReap(isReaping);
             GetComponent<SpriteRenderer>().sprite = originalFootSprite;
         }
     }

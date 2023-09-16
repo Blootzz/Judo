@@ -1,13 +1,7 @@
 {
-    "name": "BasicJudokaAssmbly",
+    "name": "ScaleTrackerAssembly",
     "rootNamespace": "",
-    "references": [
-        "CursorAssembly",
-        "FollowTargetAssembly",
-        "Unity.InputSystem",
-        "GameMaster",
-        "ScaleTrackerAssembly"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
