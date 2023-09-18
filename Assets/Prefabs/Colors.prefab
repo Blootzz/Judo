@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6732630423680499387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.30623, y: 0.04599665, z: -0.3602385}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,32 +48,65 @@ MonoBehaviour:
   - serializedVersion: 2
     rgba: 4278190080
   - serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4284691250
   - serializedVersion: 2
-    rgba: 4280868142
+    rgba: 4294901502
   - serializedVersion: 2
-    rgba: 4289769648
+    rgba: 4294877569
   - serializedVersion: 2
-    rgba: 4284703587
+    rgba: 4294877312
   p2Colors:
-  - serializedVersion: 2
-    rgba: 4294967295
-  - serializedVersion: 2
-    rgba: 4294940305
-  - serializedVersion: 2
-    rgba: 4278306013
-  - serializedVersion: 2
-    rgba: 4284166692
-  - serializedVersion: 2
-    rgba: 4284947485
-  p3Colors:
   - serializedVersion: 2
     rgba: 4278190080
   - serializedVersion: 2
-    rgba: 4282072037
+    rgba: 4280427144
   - serializedVersion: 2
-    rgba: 4282795590
-  - serializedVersion: 2
-    rgba: 4280116438
+    rgba: 4289506476
   - serializedVersion: 2
     rgba: 4279466995
+  - serializedVersion: 2
+    rgba: 4279466995
+  p3Colors:
+  - serializedVersion: 2
+    rgba: 4281479730
+  - serializedVersion: 2
+    rgba: 4278211675
+  - serializedVersion: 2
+    rgba: 4291019715
+  - serializedVersion: 2
+    rgba: 4282100694
+  - serializedVersion: 2
+    rgba: 4282100694
+  p4Colors:
+  - serializedVersion: 2
+    rgba: 3618615
+  - serializedVersion: 2
+    rgba: 1336592
+  - serializedVersion: 2
+    rgba: 16711422
+  - serializedVersion: 2
+    rgba: 9431334
+  - serializedVersion: 2
+    rgba: 9431334
+  p5Colors:
+  - serializedVersion: 2
+    rgba: 6316128
+  - serializedVersion: 2
+    rgba: 16267
+  - serializedVersion: 2
+    rgba: 16711422
+  - serializedVersion: 2
+    rgba: 1661181
+  - serializedVersion: 2
+    rgba: 1661181
+  p6Colors:
+  - serializedVersion: 2
+    rgba: 0
+  - serializedVersion: 2
+    rgba: 8454281
+  - serializedVersion: 2
+    rgba: 12632256
+  - serializedVersion: 2
+    rgba: 13336317
+  - serializedVersion: 2
+    rgba: 13336317

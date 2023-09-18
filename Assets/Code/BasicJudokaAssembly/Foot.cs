@@ -54,7 +54,7 @@ public class Foot : MonoBehaviour
                 if (!opponentFoot.isLifted) // other is planted
                 {
                     print("lifted on planted");
-                    CreateNormalBlock(collider.GetContact(0));
+                    CreateNormalBlock(collider.GetContact(0), opponentFoot.gameObject);
                     goto FinishCollision;
                 }
                 if (!opponentFoot.isReaping) // other is lifted, but not reaping
@@ -110,12 +110,13 @@ public class Foot : MonoBehaviour
         opponentFoot.disableCollisionCheckOneFrame = true;
     }
 
-    void CreateNormalBlock(ContactPoint2D contactPoint)
+    void CreateNormalBlock(ContactPoint2D contactPoint, GameObject defendingFoot)
     {
         Vector2 diff = contactPoint.collider.gameObject.transform.position - transform.position;
         float angleDegrees = Mathf.Rad2Deg * Mathf.Atan2(diff.y, diff.x);
         //print("Angle: " + angleDegrees);
         GameObject blockInstance = Instantiate(blockingCurve, contactPoint.point, Quaternion.Euler(0, 0, angleDegrees));
+        blockInstance.GetComponent<BlockCurveSpawnSparkFX>().defendingFoot = defendingFoot;
         Destroy(blockInstance, BLOCK_LIFETIME);
     }
 
