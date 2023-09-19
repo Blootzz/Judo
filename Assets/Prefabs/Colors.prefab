@@ -48,65 +48,87 @@ MonoBehaviour:
   - serializedVersion: 2
     rgba: 4278190080
   - serializedVersion: 2
-    rgba: 4284691250
+    rgba: 4283119157
   - serializedVersion: 2
-    rgba: 4294901502
-  - serializedVersion: 2
-    rgba: 4294877569
+    rgba: 4293353262
   - serializedVersion: 2
     rgba: 4294877312
+  - serializedVersion: 2
+    rgba: 4294680704
   p2Colors:
   - serializedVersion: 2
     rgba: 4278190080
   - serializedVersion: 2
-    rgba: 4280427144
+    rgba: 4281742928
   - serializedVersion: 2
-    rgba: 4289506476
+    rgba: 4278191051
   - serializedVersion: 2
-    rgba: 4279466995
+    rgba: 4286020589
   - serializedVersion: 2
-    rgba: 4279466995
+    rgba: 4285889259
   p3Colors:
   - serializedVersion: 2
     rgba: 4281479730
   - serializedVersion: 2
-    rgba: 4278211675
+    rgba: 4280043851
   - serializedVersion: 2
-    rgba: 4291019715
+    rgba: 4278241243
   - serializedVersion: 2
-    rgba: 4282100694
+    rgba: 4285183445
   - serializedVersion: 2
-    rgba: 4282100694
+    rgba: 4285182931
   p4Colors:
   - serializedVersion: 2
-    rgba: 3618615
+    rgba: 4281808695
   - serializedVersion: 2
-    rgba: 1336592
+    rgba: 4281682997
   - serializedVersion: 2
-    rgba: 16711422
+    rgba: 4278243584
   - serializedVersion: 2
-    rgba: 9431334
+    rgba: 4287416678
   - serializedVersion: 2
-    rgba: 9431334
+    rgba: 4287416166
   p5Colors:
   - serializedVersion: 2
-    rgba: 6316128
+    rgba: 4284506208
   - serializedVersion: 2
-    rgba: 16267
+    rgba: 4280300619
   - serializedVersion: 2
-    rgba: 16711422
+    rgba: 4278215907
   - serializedVersion: 2
-    rgba: 1661181
+    rgba: 4284908237
   - serializedVersion: 2
-    rgba: 1661181
+    rgba: 4284908235
   p6Colors:
   - serializedVersion: 2
-    rgba: 0
+    rgba: 4278190080
   - serializedVersion: 2
-    rgba: 8454281
+    rgba: 4282987852
   - serializedVersion: 2
-    rgba: 12632256
+    rgba: 4290707675
   - serializedVersion: 2
-    rgba: 13336317
+    rgba: 4291008481
   - serializedVersion: 2
-    rgba: 13336317
+    rgba: 4290745823
+  p7Colors:
+  - serializedVersion: 2
+    rgba: 4282335039
+  - serializedVersion: 2
+    rgba: 4278190080
+  - serializedVersion: 2
+    rgba: 4286611584
+  - serializedVersion: 2
+    rgba: 4282268474
+  - serializedVersion: 2
+    rgba: 4282268474
+  p8Colors:
+  - serializedVersion: 2
+    rgba: 4291480266
+  - serializedVersion: 2
+    rgba: 4294967295
+  - serializedVersion: 2
+    rgba: 4282791437
+  - serializedVersion: 2
+    rgba: 4289769648
+  - serializedVersion: 2
+    rgba: 4289769648

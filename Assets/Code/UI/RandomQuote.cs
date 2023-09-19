@@ -10,6 +10,6 @@ public class RandomQuote : MonoBehaviour
 
     void OnEnable()
     {
-        tmpro.text = quoteList[Random.Range(0, quoteList.Length - 1)];
+        tmpro.text = quoteList[Random.Range(0, quoteList.Length)];
     }
 }

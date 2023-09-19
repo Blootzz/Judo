@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ippon.unity
     guid: af2c4b3cb87d7de48b18dc3af36e3f4f
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: 77e5d7735eb2ee54d9ebbbec6cd08c9e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 78380b7ddfe2c3e41b091102c91c584b, type: 2}

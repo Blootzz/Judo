@@ -12,7 +12,13 @@ public class ScoreText : MonoBehaviour
 
     public void _FinishIpponScreen()
     {
-        FindObjectOfType<MultiplayerInator>().StartNewRound();
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Ippon");
+        if (GameMaster.instance.Get_VictorNum() == 0)
+            FindObjectOfType<MultiplayerInator>().StartNewRound();
+        else
+        {
+            print("Starting to load victory");
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Victory", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        }
     }
 }

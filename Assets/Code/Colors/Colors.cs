@@ -20,6 +20,8 @@ public class Colors : MonoBehaviour
     [SerializeField] Color32[] p4Colors = new Color32[5];
     [SerializeField] Color32[] p5Colors = new Color32[5];
     [SerializeField] Color32[] p6Colors = new Color32[5];
+    [SerializeField] Color32[] p7Colors = new Color32[5];
+    [SerializeField] Color32[] p8Colors = new Color32[5];
 
     public Color32[] Get_ColorPaletteForPlayer(int playerNum)
     {
@@ -37,6 +39,10 @@ public class Colors : MonoBehaviour
                 return p5Colors;
             case 6:
                 return p6Colors;
+            case 7:
+                return p7Colors;
+            case 8:
+                return p8Colors;
             default:
                 Debug.LogWarning("No suitable color palette found. Returning p1Colors");
                 return p1Colors;

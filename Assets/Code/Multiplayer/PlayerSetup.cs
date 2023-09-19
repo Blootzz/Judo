@@ -60,6 +60,7 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
         GetComponentInChildren<IpponCircle>().gameObject.GetComponent<SpriteRenderer>().color = myPalette[1];
         GetComponentInChildren<IpponCircle>().transform.GetChild(1).GetComponent<SpriteRenderer>().color = myPalette[2];
         GetComponentInChildren<MassCenter>().gameObject.GetComponent<SpriteRenderer>().color = myPalette[2];
+        GameMaster.instance.Set_PXColor(playerNum, myPalette[2]);
         GetComponent<Judoka>().leftFoot.gameObject.GetComponent<SpriteRenderer>().color = myPalette[3];
         GetComponent<Judoka>().rightFoot.gameObject.GetComponent<SpriteRenderer>().color = myPalette[4];
     }
