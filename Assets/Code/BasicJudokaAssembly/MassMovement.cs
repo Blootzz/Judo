@@ -9,12 +9,14 @@ public class MassMovement : MonoBehaviour
     Vector2 direction = new Vector2(0,0);
     Judoka judoka;
     MassCenter massCenter;
+    SpriteRenderer ipponSpriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         judoka = GetComponent<Judoka>();
         massCenter = GetComponentInChildren<MassCenter>();
+        ipponSpriteRenderer = judoka.GetComponentInChildren<IpponCircle>().GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,29 @@ public class MassMovement : MonoBehaviour
     public void Set_direction(Vector2 newInput)
     {
         direction = newInput; // apply this value every frame
+    }
+    public void Set_direction(Vector2 newInput, int pushDirectionCode)
+    {
+        direction = newInput; // apply this value every frame
+
+        switch(pushDirectionCode)
+        {
+            case 0:
+                ipponSpriteRenderer.material.SetInt("_isActive", 0);
+                break;
+            case 1:
+                ipponSpriteRenderer.material.SetInt("_isActive", 1);
+                ipponSpriteRenderer.material.SetInt("_Direc_PushPos_PullNeg", pushDirectionCode);
+                break;
+            case -1:
+                ipponSpriteRenderer.material.SetInt("_isActive", 1);
+                ipponSpriteRenderer.material.SetInt("_Direc_PushPos_PullNeg", pushDirectionCode);
+                break;
+            default:
+                Debug.LogWarning("Not sure what direction to move shader based of pushDirectionCode");
+                break;
+        }
+            
     }
 
 }

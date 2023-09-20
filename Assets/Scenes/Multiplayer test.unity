@@ -792,7 +792,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1676,6 +1676,26 @@ PrefabInstance:
     - target: {fileID: 1806745093633213210, guid: cc46ecedc5ec3ba4786a50305eef9368, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806745094266466930, guid: cc46ecedc5ec3ba4786a50305eef9368, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8968342
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806745094266466930, guid: cc46ecedc5ec3ba4786a50305eef9368, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806745094266466930, guid: cc46ecedc5ec3ba4786a50305eef9368, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806745094266466930, guid: cc46ecedc5ec3ba4786a50305eef9368, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.44236687
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806745094266466930, guid: cc46ecedc5ec3ba4786a50305eef9368, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -52.51
       objectReference: {fileID: 0}
     - target: {fileID: 4054185537717516736, guid: cc46ecedc5ec3ba4786a50305eef9368, type: 3}
       propertyPath: reapColor.m_ColorMax.a

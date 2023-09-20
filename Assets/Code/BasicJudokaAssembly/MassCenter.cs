@@ -6,7 +6,7 @@ using System;
 public class MassCenter : MonoBehaviour
 {
     Judoka parentJudoka;
-    IpponCircle myIpponCirlce;
+    [HideInInspector] public IpponCircle myIpponCirlce;
     float distanceToLeftFoot;
     float distanceToRightFoot;
     Vector2 posInfluenceSumOneFrame = new Vector2(0, 0);
