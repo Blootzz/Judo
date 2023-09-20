@@ -11,6 +11,8 @@ public class MultiplayerInator : MonoBehaviour
     [SerializeField] Transform P2SpawnCircle;
     [SerializeField] GameObject p1Panel;
     [SerializeField] GameObject p2Panel;
+    [SerializeField] GameObject p1ColorMenu;
+    [SerializeField] GameObject p2ColorMenu;
     short numPlayers = 0;
     [SerializeField] [Range(1,5)] short MAX_NUMPLAYERS = 2;
     [SerializeField] GameObject roundText;
@@ -47,12 +49,12 @@ public class MultiplayerInator : MonoBehaviour
     {
         if (!hasP1PressedStart)
         {
-            p1Panel.GetComponent<Animator>().SetTrigger("Shrink");
+            p1ColorMenu.gameObject.SetActive(true);
             hasP1PressedStart = true;
         }
         else
         {
-            p2Panel.GetComponent<Animator>().SetTrigger("Shrink");
+            p2ColorMenu.gameObject.SetActive(true);
             hasP1PressedStart = false; // in case this class needs to be used again
         }
     }

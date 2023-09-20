@@ -8,7 +8,6 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
 {
     short playerNum = 0; // either 1 or 2
     Vector2 playerSpawnPos;
-    [SerializeField] GameObject ColorPrefab;
 
     void OnEnable()
     {
@@ -55,12 +54,12 @@ public class PlayerSetup : MonoBehaviour // Called by MultiplayerInator on Join
 
     void AssignColor()
     {
-        Color32[] myPalette = ColorPrefab.GetComponent<Colors>().Get_ColorPaletteForPlayer(playerNum);
+        print("assign color here");
+        Color32[] myPalette = GameMaster.instance.Get_PXColorPalette(playerNum);
         GetComponentInChildren<CenterOfBalance>().gameObject.GetComponent<SpriteRenderer>().color = myPalette[0];
         GetComponentInChildren<IpponCircle>().gameObject.GetComponent<SpriteRenderer>().color = myPalette[1];
         GetComponentInChildren<IpponCircle>().transform.GetChild(1).GetComponent<SpriteRenderer>().color = myPalette[2];
         GetComponentInChildren<MassCenter>().gameObject.GetComponent<SpriteRenderer>().color = myPalette[2];
-        GameMaster.instance.Set_PXColor(playerNum, myPalette[2]);
         GetComponent<Judoka>().leftFoot.gameObject.GetComponent<SpriteRenderer>().color = myPalette[3];
         GetComponent<Judoka>().rightFoot.gameObject.GetComponent<SpriteRenderer>().color = myPalette[4];
     }

@@ -1,7 +1,9 @@
 {
     "name": "GameMaster",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:bf57abc59d7eaa448bf327669353f9ef"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

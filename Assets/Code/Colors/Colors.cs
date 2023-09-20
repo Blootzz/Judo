@@ -48,4 +48,30 @@ public class Colors : MonoBehaviour
                 return p1Colors;
         }
     }
+
+    public Color32 Get_PrimaryColorFromPalette(int colorIndex)
+    {
+        switch(colorIndex)
+        {
+            case 1:
+                return p1Colors[2];
+            case 2:
+                return p2Colors[2];
+            case 3:
+                return p3Colors[2];
+            case 4:
+                return p4Colors[2];
+            case 5:
+                return p5Colors[2];
+            case 6:
+                return p6Colors[2];
+            case 7:
+                return p7Colors[2];
+            case 8:
+                return p8Colors[2];
+            default:
+                Debug.LogWarning("No suitable color palette found. Returning p1Colors");
+                return p1Colors[2];
+        }
+    }
 }
