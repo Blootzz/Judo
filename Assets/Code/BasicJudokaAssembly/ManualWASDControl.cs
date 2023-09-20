@@ -6,11 +6,8 @@ using UnityEngine.InputSystem;
 public class ManualWASDControl : MonoBehaviour
 {
     MassMovement directionalMovement;
-    Vector2 opponentMassMinusMass;
-    Vector2 input = new Vector2(0,0);
     Judoka parentJudoka;
     IpponCircle ipponCircle;
-    Vector3 workingIpponDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +15,7 @@ public class ManualWASDControl : MonoBehaviour
         directionalMovement = GetComponent<MassMovement>();
         parentJudoka = GetComponent<Judoka>();
         ipponCircle = GetComponentInChildren<IpponCircle>();
+        directionalMovement.Set_direction(Vector2.zero, 0);
     }
 
     // Update is called once per frame
@@ -39,10 +37,7 @@ public class ManualWASDControl : MonoBehaviour
     // Used in Controller4 Action Map
     public void PushPullMass(InputAction.CallbackContext context)
     {
-        opponentMassMinusMass = parentJudoka.opponent.GetComponentInChildren<MassCenter>().transform.position - GetComponentInChildren<MassCenter>().transform.position;
-        opponentMassMinusMass = opponentMassMinusMass.normalized;
-        float newIpponAngle = Mathf.Atan2(opponentMassMinusMass.y, opponentMassMinusMass.x) * Mathf.Rad2Deg;
-        ipponCircle.transform.eulerAngles = new Vector3(0, 0, newIpponAngle);
+        // moved rest of shader rotation code to CenterOfBalance.cs
 
         // opponentMassMinusMass yields correct direction when pushing
         // push: x1
@@ -54,7 +49,7 @@ public class ManualWASDControl : MonoBehaviour
         if (context.ReadValue<float>() < -0.5f)
             pushDirectionCode = -1;
 
-        directionalMovement.Set_direction(context.ReadValue<float>() * parentJudoka.Get_KUZUSHI_STRENGTH() * opponentMassMinusMass, pushDirectionCode);
+        directionalMovement.Set_direction(context.ReadValue<float>() * parentJudoka.Get_KUZUSHI_STRENGTH() * ipponCircle.opponentMassMinusMass, pushDirectionCode);
     }
 
 }

@@ -1767,6 +1767,34 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""BestOfScreenUI"",
+            ""id"": ""727d3a58-8cea-4fc9-aa7d-7a0af07f3111"",
+            ""actions"": [
+                {
+                    ""name"": ""AnyKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a70cf1b-a8cc-47a4-b7b6-087bac6fdf62"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""22330fdb-b1cf-4571-9103-17667816e468"",
+                    ""path"": ""*/{Submit}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1881,6 +1909,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Mouse1_LiftRightFoot = m_Mouse1.FindAction("Lift Right Foot", throwIfNotFound: true);
         m_Mouse1_Reap = m_Mouse1.FindAction("Reap", throwIfNotFound: true);
         m_Mouse1_Pause = m_Mouse1.FindAction("Pause", throwIfNotFound: true);
+        // BestOfScreenUI
+        m_BestOfScreenUI = asset.FindActionMap("BestOfScreenUI", throwIfNotFound: true);
+        m_BestOfScreenUI_AnyKey = m_BestOfScreenUI.FindAction("AnyKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -2382,6 +2413,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public Mouse1Actions @Mouse1 => new Mouse1Actions(this);
+
+    // BestOfScreenUI
+    private readonly InputActionMap m_BestOfScreenUI;
+    private IBestOfScreenUIActions m_BestOfScreenUIActionsCallbackInterface;
+    private readonly InputAction m_BestOfScreenUI_AnyKey;
+    public struct BestOfScreenUIActions
+    {
+        private @PlayerControls m_Wrapper;
+        public BestOfScreenUIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @AnyKey => m_Wrapper.m_BestOfScreenUI_AnyKey;
+        public InputActionMap Get() { return m_Wrapper.m_BestOfScreenUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BestOfScreenUIActions set) { return set.Get(); }
+        public void SetCallbacks(IBestOfScreenUIActions instance)
+        {
+            if (m_Wrapper.m_BestOfScreenUIActionsCallbackInterface != null)
+            {
+                @AnyKey.started -= m_Wrapper.m_BestOfScreenUIActionsCallbackInterface.OnAnyKey;
+                @AnyKey.performed -= m_Wrapper.m_BestOfScreenUIActionsCallbackInterface.OnAnyKey;
+                @AnyKey.canceled -= m_Wrapper.m_BestOfScreenUIActionsCallbackInterface.OnAnyKey;
+            }
+            m_Wrapper.m_BestOfScreenUIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @AnyKey.started += instance.OnAnyKey;
+                @AnyKey.performed += instance.OnAnyKey;
+                @AnyKey.canceled += instance.OnAnyKey;
+            }
+        }
+    }
+    public BestOfScreenUIActions @BestOfScreenUI => new BestOfScreenUIActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -2481,5 +2545,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLiftRightFoot(InputAction.CallbackContext context);
         void OnReap(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IBestOfScreenUIActions
+    {
+        void OnAnyKey(InputAction.CallbackContext context);
     }
 }

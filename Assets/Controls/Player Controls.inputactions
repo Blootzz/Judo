@@ -1745,6 +1745,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "BestOfScreenUI",
+            "id": "727d3a58-8cea-4fc9-aa7d-7a0af07f3111",
+            "actions": [
+                {
+                    "name": "AnyKey",
+                    "type": "Button",
+                    "id": "2a70cf1b-a8cc-47a4-b7b6-087bac6fdf62",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "22330fdb-b1cf-4571-9103-17667816e468",
+                    "path": "*/{Submit}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "AnyKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

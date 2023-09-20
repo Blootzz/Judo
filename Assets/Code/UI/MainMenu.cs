@@ -8,18 +8,13 @@ public class MainMenu : MonoBehaviour
 {
     int index = -1;
     public GameObject[] buttonArray;
-    //public TMPro.TextMeshProUGUI textThatMightBeGlowing;
+    [SerializeField] GameObject BestOfScreen;
 
-    private void Awake()
+    public void OpenBestOfScreen()
     {
-        //textThatMightBeGlowing.fontSharedMaterial.SetFloat("_GlowPower", 0);
-    }
-
-    public void PlayGame()
-    {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         Time.timeScale = 1; // reset from last game over;
-        SceneManager.LoadScene("Multiplayer test");
+        BestOfScreen.SetActive(true);
+        gameObject.SetActive(false);
     }
     public void PlayTutorial()
     {
@@ -64,84 +59,4 @@ public class MainMenu : MonoBehaviour
             index = -1;
         }
     }
-
-
-    //public void Update()
-    //{
-    //    //Removes the highlight if the mouse button is clicked
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        if (index != -1)
-    //        {
-    //            setColor(index, new Color32(255, 255, 225, 225));
-    //        }
-    //        index = -1;
-    //    }
-
-    //    //Controls slider
-    //    if (Input.GetKeyDown("left") || Input.GetKeyDown("right"))
-    //    {
-    //        if (index != -1)
-
-
-    //        {
-    //            Slider sliding = buttonArray[index].GetComponent<Slider>();
-    //            if (sliding != null)
-    //            {
-    //                  sliding.Select();
-    //            }
-    //        }
-    //    }
-
-    //    //Change index value to select a button
-    //    if (Input.GetKeyDown("up") || Input.GetKeyDown("down"))
-    //    {
-    //        if (index == -1)
-    //        {
-    //            index = 0;
-    //            setColor(index, new Color32(0, 255, 0, 225));
-    //        }
-    //        else
-    //        {
-    //            setColor(index, new Color32(255, 255, 225, 225));
-    //            if (Input.GetKeyDown("up"))
-    //            {
-    //                index -= 1;
-    //                Debug.Log("up key was pressed");
-    //            }
-    //            if (Input.GetKeyDown("down"))
-    //            {
-    //                index += 1;
-    //                Debug.Log("down key was pressed");
-    //            }
-    //        }
-
-    //        //Keeps index in range of buttons
-    //        if (index < 0)
-    //        {
-    //            index = buttonArray.Length - 1;
-    //        }
-    //        index = index % buttonArray.Length;
-    //        setColor(index, new Color32(0, 255, 0, 225));
-    //    }
-
-    //    //Run button script
-    //    if (Input.GetKeyDown("return"))
-    //    {
-    //        Image buttonComponent = buttonArray[index].GetComponent<Image>();
-    //        if (buttonComponent != null)
-    //        {
-    //            print("Picked Button");
-    //            if (index == -1)
-    //            {
-    //                index = 0;
-    //                buttonComponent.color = new Color32(0, 255, 0, 225);
-    //            }
-    //            else
-    //            {
-    //                buttonArray[index].GetComponent<Button>().onClick.Invoke();
-    //            }
-    //        }
-    //    }
-    //}
 }

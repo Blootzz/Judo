@@ -13,6 +13,7 @@ public class GameMaster : MonoBehaviour
     [SerializeField] short[] score = new short[2];
     [SerializeField] short victorNum = 0; // 0-no victor, 1-p1, 2-p2
     [SerializeField] short numRoundsToWin = 2;
+    [SerializeField] short MAXNUMROUNDSTOWIN = 7;
     [SerializeField] Color32 p1Color;
     [SerializeField] Color32 p2Color;
 
@@ -83,9 +84,16 @@ public class GameMaster : MonoBehaviour
         return victorNum;
     }
 
-    public void Set_NumRoundsToWin(short rounds)
+    public void Increment_NumRoundsToWin(short round)
     {
-        numRoundsToWin = rounds;
+        numRoundsToWin += round;
+        if (numRoundsToWin > MAXNUMROUNDSTOWIN)
+        {
+            numRoundsToWin = 1;
+            return;
+        }
+        if (numRoundsToWin < 1)
+            numRoundsToWin = MAXNUMROUNDSTOWIN;
     }
     public short Get_NumRoundsToWin()
     {
