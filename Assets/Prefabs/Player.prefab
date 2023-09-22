@@ -702,6 +702,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ed856197-9b83-4910-ab25-62b0a0a72ef2
     m_ActionName: Mouse1/Pause[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a70cf1b-a8cc-47a4-b7b6-087bac6fdf62
+    m_ActionName: BestOfScreenUI/AnyKey[/Keyboard/enter,/XInputControllerWindows/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Mouse1
@@ -719,7 +723,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc38e026a700d04b999775c7346571e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ColorPrefab: {fileID: 6732630423680499387, guid: 7045c89a7cdb06449aadb3308c56528b, type: 3}
+--- !u!114 &2338564307650674428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806745093633213191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e697376652dbfa54bb93b6a118e83376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1806745093633213211 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8790988515709763960, guid: 65d50f34dad590e4289a855d96650552, type: 3}

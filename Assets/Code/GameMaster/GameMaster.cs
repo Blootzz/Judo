@@ -14,8 +14,8 @@ public class GameMaster : MonoBehaviour
     [SerializeField] short victorNum = 0; // 0-no victor, 1-p1, 2-p2
     [SerializeField] short numRoundsToWin = 2;
     [SerializeField] short MAXNUMROUNDSTOWIN = 7;
-    [SerializeField] short p1ColorIndex = 0;
-    [SerializeField] short p2ColorIndex = 0;
+    [SerializeField] short p1ColorNum = 0;
+    [SerializeField] short p2ColorNum = 0;
     [SerializeField] GameObject ColorPrefab;
 
     public EventHandler<MyEventArgs> updateScoreForScoreboard;
@@ -101,16 +101,16 @@ public class GameMaster : MonoBehaviour
         return numRoundsToWin;
     }
 
-    public void Set_PXColor(short pNum, short colorIndex)
+    public void Set_PXColor(short pNum, short colorNum)
     {
         if (pNum == 1)
         {
-            p1ColorIndex = colorIndex;
+            p1ColorNum = colorNum;
             return;
         }
         if (pNum == 2)
         {
-            p2ColorIndex = colorIndex;
+            p2ColorNum = colorNum;
             return;
         }
         Debug.LogWarning("Not sure what color to assign based off the pNum");
@@ -118,18 +118,18 @@ public class GameMaster : MonoBehaviour
     public Color32 Get_PXColor(short pNum)
     {
         if (pNum == 1)
-            return ColorPrefab.GetComponent<Colors>().Get_PrimaryColorFromPalette(p1ColorIndex);
+            return ColorPrefab.GetComponent<Colors>().Get_PrimaryColorFromPalette(p1ColorNum);
         if (pNum == 2)
-            return ColorPrefab.GetComponent<Colors>().Get_PrimaryColorFromPalette(p2ColorIndex);
+            return ColorPrefab.GetComponent<Colors>().Get_PrimaryColorFromPalette(p2ColorNum);
         Debug.LogWarning("Not Sure what player's color to return");
         return Color.black;
     }
     public Color32[] Get_PXColorPalette(short pNum)
     {
         if (pNum == 1)
-            return ColorPrefab.GetComponent<Colors>().Get_ColorPaletteForPlayer(p1ColorIndex);
+            return ColorPrefab.GetComponent<Colors>().Get_ColorPaletteForPlayer(p1ColorNum);
         if (pNum == 2)
-            return ColorPrefab.GetComponent<Colors>().Get_ColorPaletteForPlayer(p1ColorIndex);
+            return ColorPrefab.GetComponent<Colors>().Get_ColorPaletteForPlayer(p2ColorNum);
         Debug.LogWarning("Not Sure what player's color to return. Returning white");
         return ColorPrefab.GetComponent<Colors>().Get_ColorPaletteForPlayer(7);
     }

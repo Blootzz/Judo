@@ -49,9 +49,9 @@ public class Colors : MonoBehaviour
         }
     }
 
-    public Color32 Get_PrimaryColorFromPalette(int colorIndex)
+    public Color32 Get_PrimaryColorFromPalette(int colorNum)
     {
-        switch(colorIndex)
+        switch(colorNum)
         {
             case 1:
                 return p1Colors[2];

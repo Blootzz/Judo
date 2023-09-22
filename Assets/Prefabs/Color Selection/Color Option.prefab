@@ -224,7 +224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 0
-  colorIndex: 0
+  colorNum: 0
+  multiplayerInator: {fileID: 0}
 --- !u!1 &8531855761671468759
 GameObject:
   m_ObjectHideFlags: 0

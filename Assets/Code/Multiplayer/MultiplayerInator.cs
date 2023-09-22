@@ -13,6 +13,8 @@ public class MultiplayerInator : MonoBehaviour
     [SerializeField] GameObject p2Panel;
     [SerializeField] GameObject p1ColorMenu;
     [SerializeField] GameObject p2ColorMenu;
+    [SerializeField] GameObject p1PressSubmitPrompt;
+    [SerializeField] GameObject p2PressSubmitPrompt;
     short numPlayers = 0;
     [SerializeField] [Range(1,5)] short MAX_NUMPLAYERS = 2;
     [SerializeField] GameObject roundText;
@@ -47,14 +49,42 @@ public class MultiplayerInator : MonoBehaviour
 
     public void MakeNextPanelDisappear() // called by "Player Joined Event" in MultiplayerInator's Player Input Manager
     {
+        GetComponent<PlayerInputManager>().DisableJoining(); // prevent other player from causing issues while p1 selects color
+        // joining re-enabled in 
+
+        if (!hasP1PressedStart)
+            p1PressSubmitPrompt.SetActive(false);
+        else
+            p2PressSubmitPrompt.SetActive(false);
+
+        StartCoroutine(nameof(SpawnColorMenu));
+    }
+
+    public void ReEnableJoining()
+    {
+        GetComponent<PlayerInputManager>().EnableJoining();
+    }
+
+    // Workaround for submit button entering twice quickly to enter player and enter color
+    // delay color
+    IEnumerator SpawnColorMenu()
+    {
+        bool bufferTimeHasPassed = false;
+        while (!bufferTimeHasPassed)
+        {
+            bufferTimeHasPassed = true;
+            // here is the actual buffer period
+            yield return new WaitForEndOfFrame();
+        }
+
         if (!hasP1PressedStart)
         {
-            p1ColorMenu.gameObject.SetActive(true);
+            p1ColorMenu.SetActive(true);
             hasP1PressedStart = true;
         }
         else
         {
-            p2ColorMenu.gameObject.SetActive(true);
+            p2ColorMenu.SetActive(true);
             hasP1PressedStart = false; // in case this class needs to be used again
         }
     }
@@ -114,5 +144,20 @@ public class MultiplayerInator : MonoBehaviour
         RoundAndHajimeUI();
 
         Time.timeScale = 1;
+    }
+
+    public void ColorPlayer(short playerNum)
+    {
+        if (playerNum == 1)
+        {
+            player1.GetComponent<AssignColors>().AssignAll(playerNum);
+            return;
+        }
+        if (playerNum == 2)
+        {
+            player2.GetComponent<AssignColors>().AssignAll(playerNum);
+            return;
+        }
+        Debug.LogWarning("Improper playerNum for coloring Player");
     }
 }
