@@ -151,11 +151,13 @@ public class MultiplayerInator : MonoBehaviour
         if (playerNum == 1)
         {
             player1.GetComponent<AssignColors>().AssignAll(playerNum);
+            player1.transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<IpponOutlineWarning>().Set_originalColor();
             return;
         }
         if (playerNum == 2)
         {
             player2.GetComponent<AssignColors>().AssignAll(playerNum);
+            player2.transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<IpponOutlineWarning>().Set_originalColor();
             return;
         }
         Debug.LogWarning("Improper playerNum for coloring Player");

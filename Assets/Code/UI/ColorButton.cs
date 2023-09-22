@@ -35,7 +35,7 @@ public class ColorButton : MonoBehaviour
         if (playerNum == 1)
         {
             // I'LL DO IT AGAIN AND THEN SOME
-            transform.parent.parent.parent.parent.GetChild(1).GetChild(1).GetChild(1).GetChild(transform.GetSiblingIndex()).gameObject.SetActive(false);
+            transform.parent.parent.parent.parent.GetChild(1).GetChild(1).GetChild(2).GetChild(transform.GetSiblingIndex()).gameObject.SetActive(false);
             // colors -> color menu -> P1Panel -> canvas -> P2Panel -> ColorMenu -> Colors -> this button's sibling index
         }
 

@@ -16,7 +16,8 @@ public class IpponOutlineWarning : MonoBehaviour
     Color32 originalColor;
     Color32 workingColor;
     bool isColored = false;
-    bool isBlinkEnabled = false;
+    bool isInDanger = false;
+    bool isCoroutineRunning = false;
 
     Vector3 distanceToMass;
     float normalizedDistance;
@@ -24,12 +25,9 @@ public class IpponOutlineWarning : MonoBehaviour
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        originalColor = GetComponent<SpriteRenderer>().color;
         ipponCircle = transform.parent.GetComponent<IpponCircle>();
         massCenter.inDanger += WarningOn;
         massCenter.noLongerInDanger += WarningOff;
-
-        StartCoroutine(nameof(Blink));
     }
 
     void Update()
@@ -43,40 +41,49 @@ public class IpponOutlineWarning : MonoBehaviour
             workingColor = highDangerColor;
     }
 
+    public void Set_originalColor()
+    {
+        // set original color one time
+        originalColor = GetComponent<SpriteRenderer>().color;
+    }
+
     void WarningOn(object obj, EventArgs e)
     {
-        isBlinkEnabled = true;
+        isInDanger = true;
+        if (!isCoroutineRunning)
+        {
+            StartCoroutine(nameof(Blink));
+            isCoroutineRunning = true;
+        }
     }
     void WarningOff(object obj, EventArgs e)
     {
-        isBlinkEnabled = false;
+        // stop if there was never danger in the first place
+        if (!isInDanger)
+            return;
+
+        isInDanger = false;
+        isCoroutineRunning = false;
+        StopAllCoroutines();
 
         // ensure not stuck on warning color
         sr.color = originalColor;
         isColored = false;
     }
 
-    void Set_WorkingColor(Color32 newColor)
-    {
-        workingColor = newColor;
-    }
-
     IEnumerator Blink()
     {
         while (true)
         {
-            if (isBlinkEnabled)
+            if (!isColored)
             {
-                if (!isColored)
-                {
-                    sr.color = workingColor;
-                    isColored = true;
-                }
-                else // is already colored
-                {
-                    sr.color = originalColor;
-                    isColored = false;
-                }
+                sr.color = workingColor;
+                isColored = true;
+            }
+            else // is already colored
+            {
+                sr.color = originalColor;
+                isColored = false;
             }
             yield return new WaitForSecondsRealtime(blinkTime);
         }

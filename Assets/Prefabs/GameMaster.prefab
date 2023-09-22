@@ -45,4 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundNum: 0
-  preferredControllerMapName: Controller3
+  preferredControllerMapName: Controller4
+  score: 00000000
+  victorNum: 0
+  numRoundsToWin: 2
+  MAXNUMROUNDSTOWIN: 7
+  p1ColorNum: 0
+  p2ColorNum: 0
+  ColorPrefab: {fileID: 6732630423680499387, guid: 7045c89a7cdb06449aadb3308c56528b, type: 3}
