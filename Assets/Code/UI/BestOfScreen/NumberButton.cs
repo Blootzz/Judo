@@ -18,7 +18,7 @@ public class NumberButton : MonoBehaviour
         myTMPro.text = bestOf.ToString();
     }
 
-    public void PlayGame()
+    public void PlayGame() // called by Player Input in "BestOfScreen"
     {
         SceneManager.LoadScene("Multiplayer test");
     }

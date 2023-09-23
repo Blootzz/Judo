@@ -16,6 +16,10 @@ public class MainMenu : MonoBehaviour
         BestOfScreen.SetActive(true);
         gameObject.SetActive(false);
     }
+    public void LoadHowToPlay()
+    {
+        SceneManager.LoadScene("How To Play");
+    }
     public void PlayTutorial()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
