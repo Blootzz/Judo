@@ -24,7 +24,9 @@ public class GameMaster : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         if (instance != null & instance != this) // you should kill Yourself... NOW
-            Destroy(this);
+        {
+            Destroy(gameObject); // this - instance of script, gameObject - actual object
+        }
         else
             instance = this;
     }
@@ -32,9 +34,15 @@ public class GameMaster : MonoBehaviour
     void CheckVictory()
     {
         if (score[0] >= numRoundsToWin)
+        {
             victorNum = 1;
+            roundNum = 0; // reset roundNum
+        }
         if (score[1] >= numRoundsToWin)
+        {
             victorNum = 2;
+            roundNum = 0; // reset roundNum
+        }
     }
 
     #region Getters and Setters
@@ -46,7 +54,9 @@ public class GameMaster : MonoBehaviour
     {
         roundNum++;
         if (roundNum == 1)
+        {
             ClearScore();
+        }
     }
     public string Get_preferredControllerActionMapName()
     {

@@ -15,6 +15,12 @@ public class Scoreboard : MonoBehaviour
         GameMaster.instance.updateScoreForScoreboard += AddScore;
     }
 
+    void OnDisable()
+    {
+        // persistent instance of GM will try keep old "reference" to AddScore if we don't unsubscribe
+        GameMaster.instance.updateScoreForScoreboard -= AddScore;
+    }
+
     IEnumerator DisplayScoreBoard()
     {
         for(short i=0; i<maxPoints; i++)

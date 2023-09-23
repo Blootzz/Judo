@@ -8,6 +8,7 @@ public class ScoreText : MonoBehaviour
     void OnEnable()
     {
         GetComponent<TextMeshProUGUI>().text = GameMaster.instance.Get_P1Score() + " - " + GameMaster.instance.Get_P2Score();
+        // reset score is done in GameMaster when round 1 starts
     }
 
     public void _FinishIpponScreen()
@@ -17,7 +18,6 @@ public class ScoreText : MonoBehaviour
             FindObjectOfType<MultiplayerInator>().StartNewRound();
         else
         {
-            print("Starting to load victory");
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Victory", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         }
     }

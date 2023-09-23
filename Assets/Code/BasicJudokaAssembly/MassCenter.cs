@@ -125,7 +125,6 @@ public class MassCenter : MonoBehaviour
 
         if (Vector2.Distance(transform.position, myIpponCirlce.transform.position) >= myIpponCirlce.Get_Diameter() / 2)
         {
-            Debug.LogWarning("Ippon! " + transform.parent.name);
             iJustGotIppowned.Invoke(this, EventArgs.Empty); // listened to by PlayerSetup.cs, ippon lense flare
             
             Time.timeScale = 0;
